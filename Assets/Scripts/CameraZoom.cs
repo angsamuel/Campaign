@@ -54,7 +54,7 @@ public class CameraZoom : MonoBehaviour {
 
 		//calculate maximum camera zoom //Orthographic size = ((Vert Resolution)/(PPUScale * PPU)) * 0.5
 		cameraCurrentZoom = ((Screen.height)/(ppuScale * 32))*0.5000f;
-		cameraZoomMax = cameraCurrentZoom;
+		cameraZoomMax = cameraCurrentZoom*4;
 		Camera.main.orthographicSize = cameraCurrentZoom;
 
 		//make the camera less sensitive as we zoom in
