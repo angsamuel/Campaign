@@ -19,11 +19,13 @@ public class Tile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    
+		
 	}
     void OnMouseOver()
     {
-        uiBank.cursor.transform.position = new Vector3(transform.position.x, transform.position.y, -9);
+		if (!uiBank.mainPanel.GetComponent<MainPanelScript> ().mouseOver) {
+			uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, -9);
+		}
     }
     void OnMouseExit()
     {

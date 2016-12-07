@@ -28,9 +28,9 @@ public class GameController : MonoBehaviour {
         {
             for (int iy = 0; iy < height; iy++)
             {
-                float xLoc = (((ix + .5f) + ((Screen.width/(ppu*2f))) - width)) + (((Screen.height/(ppu*2f)) - height)/2);
-                float yLoc = (iy + .5f) - (height/2);
-                GameObject spawnedTile = Instantiate(tile, new Vector3(xLoc, yLoc, 0), Quaternion.identity) as GameObject;
+				float xLoc = ix - (width/2);
+				float yLoc = iy - (height/2);
+				GameObject spawnedTile = Instantiate(tile, new Vector3(xLoc, yLoc, 0), Quaternion.identity) as GameObject;
 
                 grid[ix, iy] = spawnedTile;
             }
@@ -40,5 +40,11 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+	public int GetMapRows(){
+		return height;
+	}
+	public int GetMapCols(){
+		return width;
 	}
 }
