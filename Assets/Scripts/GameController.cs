@@ -9,32 +9,55 @@ public class GameController : MonoBehaviour {
     public int height;
     public int width;
     GameObject tile;
+	GameObject city;
     private GameObject[,] grid;
     public int ppu = 32;
 
+	public int cityNumber;
+
+	List<Vector3> freeCoordinates = new List<Vector3>();
 
     // Use this for initialization
     void Start () {
         CreateWorld();
-        
 	}
 
     private void CreateWorld()
     {
+		//spawn tiles-----------------------------------------------------------
         Debug.Log(((Screen.height / 32f) - height) / 2f);
         grid = new GameObject[width, height];
         tile = Resources.Load("Prefabs/Tile") as GameObject;
+		city = Resources.Load ("Prefabs/City") as GameObject;
+
         for (int ix = 0; ix < width; ix++)
         {
             for (int iy = 0; iy < height; iy++)
             {
+				freeCoordinates.Add(new Vector3(ix, iy, -1));
 				float xLoc = ix - (width/2);
 				float yLoc = iy - (height/2);
 				GameObject spawnedTile = Instantiate(tile, new Vector3(xLoc, yLoc, 0), Quaternion.identity) as GameObject;
-
                 grid[ix, iy] = spawnedTile;
             }
         }
+
+		//shuffle coordinates
+		for (int i = 0; i < freeCoordinates.Count; i++) {
+			Vector3 temp = freeCoordinates [i];
+			int randomIndex = Random.Range (0, freeCoordinates.Count);
+			freeCoordinates [i] = freeCoordinates [randomIndex];
+			freeCoordinates [randomIndex] = temp;
+		}
+
+		//spawn Cities
+		for (int i = 0; i < cityNumber; ++i) {
+			int sx = (int)grid [(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].transform.position.x; 
+			int sy = (int)grid [(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].transform.position.y;
+			GameObject spawnedCity = Instantiate (city,new Vector3(sx, sy, -1), Quaternion.identity) as GameObject;
+			grid [(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].GetComponent<Tile> ().environment = spawnedCity;
+			freeCoordinates.RemoveAt(0);
+		}
     }
 
 	// Update is called once per frame

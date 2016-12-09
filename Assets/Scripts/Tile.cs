@@ -9,7 +9,7 @@ public class Tile : MonoBehaviour {
      * 
      * */
 
-    private GameObject environment; //village forest etc.
+    public GameObject environment; //village forest etc.
     UIBank uiBank;
 
 	// Use this for initialization 

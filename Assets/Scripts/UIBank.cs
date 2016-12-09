@@ -6,6 +6,7 @@ public class UIBank : MonoBehaviour {
     public Text nameText;
     public GameObject cursor;
 	public GameObject mainPanel;
+	public GameObject nameWizard;
 	// Use this for initialization
 	void Start () {
 	}
