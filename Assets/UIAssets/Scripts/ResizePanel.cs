@@ -4,8 +4,8 @@ using UnityEngine.EventSystems;
 
 public class ResizePanel : MonoBehaviour, IPointerDownHandler, IDragHandler {
 	
-	public Vector2 minSize = new Vector2 (100, 100);
-	public Vector2 maxSize = new Vector2 (400, 400);
+	private Vector2 minSize = new Vector2 (160, 32);
+	private Vector2 maxSize = new Vector2 (Screen.height/2, Screen.height/2.5f);
 	
 	private RectTransform panelRectTransform;
 	private Vector2 originalLocalPointerPosition;

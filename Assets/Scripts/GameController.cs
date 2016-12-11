@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour {
 				freeCoordinates.Add(new Vector3(ix, iy, -1));
 				float xLoc = ix - (width/2);
 				float yLoc = iy - (height/2);
-				GameObject spawnedTile = Instantiate(tile, new Vector3(xLoc, yLoc, 0), Quaternion.identity) as GameObject;
+				GameObject spawnedTile = Instantiate(tile, new Vector3(xLoc, yLoc, 100), Quaternion.identity) as GameObject;
                 grid[ix, iy] = spawnedTile;
             }
         }
@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour {
 		for (int i = 0; i < cityNumber; ++i) {
 			int sx = (int)grid [(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].transform.position.x; 
 			int sy = (int)grid [(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].transform.position.y;
-			GameObject spawnedCity = Instantiate (city,new Vector3(sx, sy, -1), Quaternion.identity) as GameObject;
+			GameObject spawnedCity = Instantiate (city,new Vector3(sx, sy, 99), Quaternion.identity) as GameObject;
 			grid [(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].GetComponent<Tile> ().environment = spawnedCity;
 			freeCoordinates.RemoveAt(0);
 		}

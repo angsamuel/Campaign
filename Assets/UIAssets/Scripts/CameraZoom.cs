@@ -100,7 +100,7 @@ public class CameraZoom : MonoBehaviour {
 			}
 		}
 		//ensure camera sensitivity adjusts for zoom level
-		cameraSpeedCutBy = originalCameraSpeedCutBy * (2f - ((cameraCurrentZoom) / cameraZoomMax));
+		cameraSpeedCutBy = (1f - ((cameraCurrentZoom) / cameraZoomMax));
 	}
 
 	void Update()

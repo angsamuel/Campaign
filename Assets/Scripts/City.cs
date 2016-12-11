@@ -7,6 +7,7 @@ public class City : Environment {
 	void Start () {
 		base.Start ();
 		name = uiBank.GetComponent<UIBank> ().nameWizard.GetComponent<NameWizard> ().GenerateCityName();
+		type = "City";
 		Debug.Log (name);
 	}
 

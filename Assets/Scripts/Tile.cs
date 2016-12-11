@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Tile : MonoBehaviour {
 
@@ -9,26 +10,48 @@ public class Tile : MonoBehaviour {
      * 
      * */
 
+	private bool selected = false;
     public GameObject environment; //village forest etc.
     UIBank uiBank;
 
 	// Use this for initialization 
 	void Start () {
-        uiBank = GameObject.Find("UIBank").GetComponent<UIBank>();
+		GameObject uiBankObject = GameObject.Find ("UIBank") as GameObject;
+        uiBank = uiBankObject.GetComponent<UIBank>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (selected) {
+			if (Input.GetMouseButtonDown (0)) {
+				OnMouseClick ();
+			}
+		}
 	}
     void OnMouseOver()
     {
-		if (!uiBank.mainPanel.GetComponent<MainPanelScript> ().mouseOver) {
-			uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, -9);
+		if (!uiBank.mouseOnUI) {
+			selected = true;
 		}
     }
     void OnMouseExit()
     {
-        uiBank.cursor.transform.position = uiBank.cursor.GetComponent<Cursor>().dumpPosition;
+		selected = false;
     }
+
+	void OnMouseClick(){
+		Debug.Log ("Mouse Click Outside");
+		if (selected) {
+			uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, -9);
+			Debug.Log ("Mouse Click");
+			uiBank.infoPanel.GetComponent<MainPanelScript> ().MakeActive ();
+			if (environment != null) {
+				uiBank.infoPanel.transform.GetChild (0).GetComponent<Text> ().text = environment.GetComponent<Environment> ().name;
+				uiBank.infoPanel.transform.GetChild (1).GetComponent<Text> ().text = environment.GetComponent<Environment> ().type;
+			} else {
+				uiBank.infoPanel.transform.GetChild (0).GetComponent<Text> ().text = "Nothing"; 
+				uiBank.infoPanel.transform.GetChild (1).GetComponent<Text> ().text = "";
+			}
+		}
+	}
 }
