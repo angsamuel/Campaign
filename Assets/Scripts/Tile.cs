@@ -43,13 +43,12 @@ public class Tile : MonoBehaviour {
 		if (selected) {
 			uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, -9);
 			Debug.Log ("Mouse Click");
-			//uiBank.infoPanel.GetComponent<MainPanelScript> ().MakeActive ();
 			if (environment != null) {
-				//uiBank.infoPanel.transform.GetChild (0).GetComponent<Text> ().text = environment.GetComponent<Environment> ().name;
-				//uiBank.infoPanel.transform.GetChild (1).GetComponent<Text> ().text = environment.GetComponent<Environment> ().type;
+				Debug.Log (environment.name);
+				uiBank.selectionNameText.text = environment.GetComponent<Environment> ().name;
+				uiBank.selectionTypeText.text = environment.GetComponent<Environment> ().type;
 			} else {
-				//uiBank.infoPanel.transform.GetChild (0).GetComponent<Text> ().text = "Nothing"; 
-				//uiBank.infoPanel.transform.GetChild (1).GetComponent<Text> ().text = "";
+				uiBank.DefaultSelection ();
 			}
 		}
 	}

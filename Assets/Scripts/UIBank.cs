@@ -8,12 +8,13 @@ public class UIBank : MonoBehaviour {
 	public GameObject mainPanel;
 	public GameObject nameWizard;
 
+
 	public bool mouseOnUI = false;
 
 	//InfoPanel-----------------
 	public GameObject infoPanel;
-	public Text infoPanelHeader;
-	public Text infoPanelText;
+	public Text selectionNameText;
+	public Text selectionTypeText;
 
 
 
@@ -26,5 +27,11 @@ public class UIBank : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void DefaultSelection(){
+		selectionNameText.text = "Lanada Rue";
+		selectionTypeText.text = "The Land of Regret";
+
 	}
 }
