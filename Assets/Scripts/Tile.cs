@@ -40,17 +40,16 @@ public class Tile : MonoBehaviour {
     }
 
 	void OnMouseClick(){
-		Debug.Log ("Mouse Click Outside");
 		if (selected) {
 			uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, -9);
 			Debug.Log ("Mouse Click");
-			uiBank.infoPanel.GetComponent<MainPanelScript> ().MakeActive ();
+			//uiBank.infoPanel.GetComponent<MainPanelScript> ().MakeActive ();
 			if (environment != null) {
-				uiBank.infoPanel.transform.GetChild (0).GetComponent<Text> ().text = environment.GetComponent<Environment> ().name;
-				uiBank.infoPanel.transform.GetChild (1).GetComponent<Text> ().text = environment.GetComponent<Environment> ().type;
+				//uiBank.infoPanel.transform.GetChild (0).GetComponent<Text> ().text = environment.GetComponent<Environment> ().name;
+				//uiBank.infoPanel.transform.GetChild (1).GetComponent<Text> ().text = environment.GetComponent<Environment> ().type;
 			} else {
-				uiBank.infoPanel.transform.GetChild (0).GetComponent<Text> ().text = "Nothing"; 
-				uiBank.infoPanel.transform.GetChild (1).GetComponent<Text> ().text = "";
+				//uiBank.infoPanel.transform.GetChild (0).GetComponent<Text> ().text = "Nothing"; 
+				//uiBank.infoPanel.transform.GetChild (1).GetComponent<Text> ().text = "";
 			}
 		}
 	}
