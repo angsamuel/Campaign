@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class UIBank : MonoBehaviour {
-    public Text nameText;
+	List<GameObject> panels;
+
+
     public GameObject cursor;
 	public GameObject mainPanel;
 	public GameObject nameWizard;
@@ -16,12 +19,16 @@ public class UIBank : MonoBehaviour {
 	public Text selectionNameText;
 	public Text selectionTypeText;
 
+	public GameObject warPanel;
+
 
 
 	//Panels
 	// Use this for initialization
 	void Start () {
-	
+		panels = new List<GameObject> (){ infoPanel, warPanel };
+		DisableAllPanels ();
+		infoPanel.SetActive (true);
 	}
 	
 	// Update is called once per frame
@@ -33,5 +40,19 @@ public class UIBank : MonoBehaviour {
 		selectionNameText.text = "Lanada Rue";
 		selectionTypeText.text = "The Land of Regret";
 
+	}
+
+	public void DisableAllPanels(){
+		foreach (GameObject p in panels) {
+			p.SetActive (false);
+		}
+	}
+	public void OpenInfoPanel(){
+		DisableAllPanels ();
+		infoPanel.SetActive (true);
+	}
+	public void OpenWarPanel(){
+		DisableAllPanels ();
+		warPanel.SetActive (true);
 	}
 }

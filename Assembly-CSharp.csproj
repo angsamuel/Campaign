@@ -45,8 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Army.cs" />
+     <Compile Include="Assets\Character.cs" />
      <Compile Include="Assets\NameWizard.cs" />
      <Compile Include="Assets\PanelDragArea.cs" />
+     <Compile Include="Assets\Player.cs" />
      <Compile Include="Assets\Scripts\City.cs" />
      <Compile Include="Assets\Scripts\Cursor.cs" />
      <Compile Include="Assets\Scripts\CursorScriptOld.cs" />

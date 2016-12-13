@@ -153,4 +153,6 @@ public class NameWizard : MonoBehaviour {
 		lastNamesArr = lastNamesAsset.text.Split(archDelim, System.StringSplitOptions.RemoveEmptyEntries); 
 	}
 
+	//public string GetFemaleName
+
 }
