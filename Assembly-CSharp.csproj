@@ -47,10 +47,13 @@
   <ItemGroup>
      <Compile Include="Assets\Army.cs" />
      <Compile Include="Assets\Character.cs" />
+     <Compile Include="Assets\ComboBox\Scripts\ComboBoxItem.cs" />
+     <Compile Include="Assets\ComboBox\Scripts\TestComboBox.cs" />
      <Compile Include="Assets\NameWizard.cs" />
      <Compile Include="Assets\PanelDragArea.cs" />
      <Compile Include="Assets\Player.cs" />
      <Compile Include="Assets\Scripts\City.cs" />
+     <Compile Include="Assets\Scripts\ComboBox.cs" />
      <Compile Include="Assets\Scripts\Cursor.cs" />
      <Compile Include="Assets\Scripts\CursorScriptOld.cs" />
      <Compile Include="Assets\Scripts\Environment.cs" />
@@ -70,6 +73,7 @@
      <Compile Include="Assets\UIAssets\Scripts\ScrollDetailTexture.cs" />
      <Compile Include="Assets\UIAssets\Scripts\ShowSliderValue.cs" />
      <Compile Include="Assets\UIAssets\Scripts\TiltWindow.cs" />
+     <Compile Include="Assets\WarPanel.cs" />
      <None Include="Assets\Resources\Words\village_nouns.txt" />
      <None Include="Assets\Resources\Words\adj.txt" />
      <None Include="Assets\Resources\Words\male_names.txt" />

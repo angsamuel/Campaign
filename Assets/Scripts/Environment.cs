@@ -10,6 +10,7 @@ public class Environment : MonoBehaviour {
 	// Use this for initialization
 	protected void Start () {
 		uiBank = GameObject.Find ("UIBank");
+		name = "";
 	}
 
 

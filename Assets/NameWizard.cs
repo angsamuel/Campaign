@@ -111,25 +111,25 @@ public class NameWizard : MonoBehaviour {
 		Resources.UnloadUnusedAssets ();
 	}
 
-	private string RandomNoun(){
+	public string RandomNoun(){
 		return nounArr [Random.Range (0, nounArr.Length)];
 	}
-	private string RandomName(){
+	public string RandomName(){
 		return namesArr [Random.Range (0, namesArr.Length)];
 	}
-	private string RandomAdjective(){
+	public string RandomAdjective(){
 		return adjectiveArr [Random.Range (0, adjectiveArr.Length)];
 	}
-	private string RandomVillageNoun(){
+	public string RandomVillageNoun(){
 		return villageNounArr [Random.Range (0, villageNounArr.Length)];
 	}
-	private string RandomMaleName(){
+	public string RandomMaleName(){
 		return maleNamesArr [Random.Range (0, maleNamesArr.Length)];
 	}
-	private string RandomFemaleName(){
+	public string RandomFemaleName(){
 		return femaleNamesArr [Random.Range (0, femaleNamesArr.Length)];
 	}
-	private string RandomLastName(){
+	public string RandomLastName(){
 		return lastNamesArr [Random.Range (0, lastNamesArr.Length)];
 	}
 

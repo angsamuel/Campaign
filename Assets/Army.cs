@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Army : MonoBehaviour {
+public class Army {
 
-	GameObject leader;
-	int soldiers;
+	public Character leader;
+	public int soldiers;
 
 	// Use this for initialization
-	void Start () {
-		
+	 public Army () {
+		leader = new Character ();
+		leader.profession = "general";
+		soldiers = 0;
 	}
-	
+		
 	// Update is called once per frame
 	void Update () {
 	

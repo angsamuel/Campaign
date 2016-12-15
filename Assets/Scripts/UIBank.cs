@@ -5,14 +5,13 @@ using System.Collections.Generic;
 
 public class UIBank : MonoBehaviour {
 	List<GameObject> panels;
+	public bool mouseOnUI = false;
 
+	private GameObject playerCity;
 
     public GameObject cursor;
 	public GameObject mainPanel;
 	public GameObject nameWizard;
-
-
-	public bool mouseOnUI = false;
 
 	//InfoPanel-----------------
 	public GameObject infoPanel;
@@ -21,13 +20,11 @@ public class UIBank : MonoBehaviour {
 
 	public GameObject warPanel;
 
-
-
 	//Panels
 	// Use this for initialization
 	void Start () {
 		panels = new List<GameObject> (){ infoPanel, warPanel };
-		DisableAllPanels ();
+		//DisableAllPanels ();
 		infoPanel.SetActive (true);
 	}
 	
