@@ -39,6 +39,13 @@ public class CameraZoom : MonoBehaviour {
 	//last position of cursor, used for panning the map
 	private Vector3 lastPosition;
 
+	UIBank uiBank;
+
+	void Awake(){
+		GameObject u = GameObject.Find ("UIBank") as GameObject;
+		uiBank = u.GetComponent<UIBank> ();
+	}
+
 
 	void Start ()
 	{
@@ -83,20 +90,17 @@ public class CameraZoom : MonoBehaviour {
 		transform.position = v3;
 
 		//camera zooming
-		if (Input.GetAxis("Mouse ScrollWheel") < 0) // back
-		{
-			if (cameraCurrentZoom < cameraZoomMax)
-			{
-				cameraCurrentZoom += 1;
-				Camera.main.orthographicSize = Mathf.Max(Camera.main.orthographicSize + 1);
-			}
-		}
-		if (Input.GetAxis("Mouse ScrollWheel") > 0) // forward
-		{
-				if (cameraCurrentZoom > 2)
-			{
-				cameraCurrentZoom -= 1;
-				Camera.main.orthographicSize = Mathf.Min(Camera.main.orthographicSize - 1);
+		if (!uiBank.mouseOnUI) {
+			if (Input.GetAxis ("Mouse ScrollWheel") < 0) { // back
+				if (cameraCurrentZoom < cameraZoomMax) {
+					cameraCurrentZoom += 1;
+					Camera.main.orthographicSize = Mathf.Max (Camera.main.orthographicSize + 1);
+				}
+			} else if (Input.GetAxis ("Mouse ScrollWheel") > 0) { // forward
+				if (cameraCurrentZoom > 2) {
+					cameraCurrentZoom -= 1;
+					Camera.main.orthographicSize = Mathf.Min (Camera.main.orthographicSize - 1);
+				}
 			}
 		}
 		//ensure camera sensitivity adjusts for zoom level
