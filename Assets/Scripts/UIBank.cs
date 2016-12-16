@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class UIBank : MonoBehaviour {
+	Vector3 dumpPosition = new Vector3 (500, 500, 500);
+
 	List<GameObject> panels;
 	public bool mouseOnUI = false;
 
