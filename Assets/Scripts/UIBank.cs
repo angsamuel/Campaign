@@ -21,6 +21,7 @@ public class UIBank : MonoBehaviour {
 	public Text selectionTypeText;
 
 	public GameObject warPanel;
+	public GameObject ArmySelectCB;
 
 	//Panels
 	// Use this for initialization

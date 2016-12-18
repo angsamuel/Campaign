@@ -10,9 +10,22 @@ public class City : Environment {
 	int population;
 	List<GameObject> armies;
 
+	List<GameObject> storedArmies;
+
+	UIBank uiBank;
+
+
 	void Awake(){
 		army = Resources.Load ("Prefabs/Army") as GameObject;
+		GameObject uiBankObject = GameObject.Find ("UIBank") as GameObject;
+		uiBank = uiBankObject.GetComponent<UIBank> ();
+		storedArmies = new List<GameObject> ();
 		armies = new List<GameObject>();
+
+		//create armies
+		for (int i = 0; i < 2; ++i) {
+			CreateArmy ();
+		}
 	}
 
 	void Start () {
@@ -27,33 +40,44 @@ public class City : Environment {
 		GetComponent<Renderer>().material.color = newColor; 
 
 		//Spawn Army with Same Color
-		GameObject a = Instantiate (army,new Vector3(transform.position.x, transform.position.y, 97), Quaternion.identity) as GameObject;
-		a.GetComponent<Army> ().SetColor (GetComponent<Renderer> ().material.color);
-
 		base.Start ();
 		NameWizard nameWizard = GameObject.Find ("NameWizard").GetComponent<NameWizard> ();
 		name = nameWizard.GenerateCityName ();
 		type = "city";
 		leader = new Character();
+
+	
 	}
 
 	public void FillArmySelectCB(){
 		
-
 		List<string> armyNames = new List<string>();
-		/*
 
 		for (int i = 0; i<armies.Count; ++i) {
-			armyNames.Add (armies[i].leader.firstName + " " + armies[i].leader.lastName);
+			armyNames.Add (armies[i].GetComponent<Army>().leader.firstName + " " + armies[i].GetComponent<Army>().leader.lastName);
+			//Debug.Log(armies[i].GetComponent<Army>().leader.firstName + "|");
+			//armyNames.Add("boi");
 		}
-		GameObject armySelectCB = GameObject.Find ("ArmySelectCB") as GameObject;
+		GameObject armySelectCB = uiBank.ArmySelectCB;
 		armySelectCB.GetComponent<Kender.uGUI.ComboBox> ().ClearItems ();
 		armySelectCB.GetComponent<Kender.uGUI.ComboBox>().AddItems(armyNames);
-	*/
+	}
+
+	public void StoreArmy(GameObject a){
+		storedArmies.Add (a);
+		a.GetComponent<Army> ().TeleportOffScreen ();
 	}
 
 	void Update(){
 
+	}
+
+	void CreateArmy(){
+		GameObject a = Instantiate (army,new Vector3(transform.position.x, transform.position.y, 97), Quaternion.identity) as GameObject;
+		a.GetComponent<Army> ().SetColor (GetComponent<Renderer> ().material.color);
+		a.GetComponent<Army> ().TeleportOffScreen ();
+		storedArmies.Add (a);
+		armies.Add (a);
 	}
 
 

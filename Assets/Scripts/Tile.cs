@@ -41,7 +41,7 @@ public class Tile : MonoBehaviour {
 
 	void OnMouseClick(){
 		if (selected) {
-			uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, -9);
+			uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, 91);
 			Debug.Log ("Mouse Click");
 			if (environment != null) {
 				Debug.Log (environment.name);
