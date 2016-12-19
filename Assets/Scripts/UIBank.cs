@@ -13,7 +13,8 @@ public class UIBank : MonoBehaviour {
 
     public GameObject cursor;
 	public GameObject mainPanel;
-	public GameObject nameWizard;
+    public GameObject basePanel;
+    public GameObject nameWizard;
 
 	//InfoPanel-----------------
 	public GameObject infoPanel;
@@ -22,6 +23,8 @@ public class UIBank : MonoBehaviour {
 
 	public GameObject warPanel;
 	public GameObject ArmySelectCB;
+
+    public Text targetLocationText;
 
 	//Panels
 	// Use this for initialization

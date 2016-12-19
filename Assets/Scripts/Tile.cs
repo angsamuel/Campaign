@@ -7,7 +7,6 @@ public class Tile : MonoBehaviour {
     /* scans for mouse cursor
      * stores a single object (village, forrest, etc)
      * opens menu to activate object
-     * 
      * */
 
 	private bool selected = false;
@@ -30,9 +29,9 @@ public class Tile : MonoBehaviour {
 	}
     void OnMouseOver()
     {
-		if (!uiBank.mouseOnUI) {
-			selected = true;
-		}
+		if (!uiBank.mouseOnUI && Input.mousePosition.x > uiBank.basePanel.GetComponent<RectTransform>().sizeDelta.x){
+                selected = true;
+            }
     }
     void OnMouseExit()
     {
@@ -47,9 +46,11 @@ public class Tile : MonoBehaviour {
 				Debug.Log (environment.name);
 				uiBank.selectionNameText.text = environment.GetComponent<Environment> ().name;
 				uiBank.selectionTypeText.text = environment.GetComponent<Environment> ().type;
+                uiBank.targetLocationText.text = environment.GetComponent<Environment>().name;
 			} else {
 				uiBank.DefaultSelection ();
-			}
+                uiBank.targetLocationText.text = "NULL";
+            }
 		}
 	}
 }
