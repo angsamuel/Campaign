@@ -204,7 +204,7 @@ namespace Kender.uGUI
             }
         }
 
-        private RectTransform _comboTextRectTransform;
+        public RectTransform _comboTextRectTransform;
 
         private RectTransform comboTextRectTransform
         {

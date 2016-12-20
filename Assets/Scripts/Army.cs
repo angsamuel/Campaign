@@ -11,12 +11,12 @@ public class Army : MonoBehaviour {
 	void Awake(){
 		dumpPosition = new Vector3 (1000, 1000, -1000);
 		leader = new Character ();
-	}
+        soldiers = Random.Range(10, 20);
+    }
 
 	// Use this for initialization
 	void Start () {
 		leader.profession = "general";
-		soldiers = 0;
 		float newZ = transform.position.z + 1f;
 		transform.FindChild ("Background").transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
 	}

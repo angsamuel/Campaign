@@ -7,7 +7,11 @@ public class Tile : MonoBehaviour {
     /* scans for mouse cursor
      * stores a single object (village, forrest, etc)
      * opens menu to activate object
+     * stores location in grid
      * */
+
+	public int posX;
+	public int posY;
 
 	private bool selected = false;
     public GameObject environment; //village forest etc.
@@ -41,14 +45,16 @@ public class Tile : MonoBehaviour {
 	void OnMouseClick(){
 		if (selected) {
 			uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, 91);
-			Debug.Log ("Mouse Click");
+            uiBank.selectionCoordText.text = "(" + posX.ToString() + ", " + posY.ToString() + ")";
+            uiBank.selectedTile = GetComponent<GameObject>();
 			if (environment != null) {
 				Debug.Log (environment.name);
 				uiBank.selectionNameText.text = environment.GetComponent<Environment> ().name;
 				uiBank.selectionTypeText.text = environment.GetComponent<Environment> ().type;
                 uiBank.targetLocationText.text = environment.GetComponent<Environment>().name;
 			} else {
-				uiBank.DefaultSelection ();
+                uiBank.selectionNameText.text = "NULL";
+                uiBank.selectionTypeText.text = "NULL";
                 uiBank.targetLocationText.text = "NULL";
             }
 		}

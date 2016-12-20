@@ -12,10 +12,13 @@ public class City : Environment {
 
 	List<GameObject> storedArmies;
 
-	UIBank uiBank;
+    public Hashtable armyTable;
+
+    UIBank uiBank;
 
 
 	void Awake(){
+        armyTable = new Hashtable();
 		army = Resources.Load ("Prefabs/Army") as GameObject;
 		GameObject uiBankObject = GameObject.Find ("UIBank") as GameObject;
 		uiBank = uiBankObject.GetComponent<UIBank> ();
@@ -26,9 +29,10 @@ public class City : Environment {
 		for (int i = 0; i < 2; ++i) {
 			CreateArmy ();
 		}
-	}
+        type = "city";
+    }
 
-	void Start () {
+    void Start () {
 		
 		// pick a random color
 		float R = Random.Range(.4f, .9f);
@@ -43,9 +47,7 @@ public class City : Environment {
 		base.Start ();
 		NameWizard nameWizard = GameObject.Find ("NameWizard").GetComponent<NameWizard> ();
 		name = nameWizard.GenerateCityName ();
-		type = "city";
 		leader = new Character();
-
 	
 	}
 
@@ -78,6 +80,7 @@ public class City : Environment {
 		a.GetComponent<Army> ().TeleportOffScreen ();
 		storedArmies.Add (a);
 		armies.Add (a);
+        armyTable.Add(a.GetComponent<Army>().leader.firstName + " " + a.GetComponent<Army>().leader.lastName, a);
 	}
 
 

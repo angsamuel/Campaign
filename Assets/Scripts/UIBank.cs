@@ -9,6 +9,7 @@ public class UIBank : MonoBehaviour {
 	List<GameObject> panels;
 	public bool mouseOnUI = false;
 
+    public GameObject selectedTile;
 	private GameObject playerCity;
 
     public GameObject cursor;
@@ -20,11 +21,14 @@ public class UIBank : MonoBehaviour {
 	public GameObject infoPanel;
 	public Text selectionNameText;
 	public Text selectionTypeText;
+    public Text selectionCoordText;
 
 	public GameObject warPanel;
 	public GameObject ArmySelectCB;
+    public Text soldiersNumText;
 
     public Text targetLocationText;
+
 
 	//Panels
 	// Use this for initialization
