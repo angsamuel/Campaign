@@ -11,12 +11,14 @@ public class GameController : MonoBehaviour {
     public int height;
     public int width;
 
+    public int day;
+
 	GameObject tile;
 	GameObject city;
 
 	UIBank uiBank;
     
-	private GameObject[,] grid;
+	public GameObject[,] grid;
     public int ppu = 32;
 
 	public int cityNumber;
@@ -25,6 +27,14 @@ public class GameController : MonoBehaviour {
 	public GameObject playerCity;
 
 	List<Vector3> freeCoordinates = new List<Vector3>();
+
+    List<GameObject> cityList;
+
+    void Awake()
+    {
+        cityList = new List<GameObject>();
+        day = 0;
+    }
 
     // Use this for initialization
     void Start () {
@@ -78,11 +88,7 @@ public class GameController : MonoBehaviour {
 
         //spawn other cities
         for (int i = 1; i < cityNumber; ++i) {
-			int sx = (int)grid [(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].transform.position.x; 
-			int sy = (int)grid [(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].transform.position.y;
-			GameObject spawnedCity = Instantiate (city,new Vector3(sx, sy, 99), Quaternion.identity) as GameObject;
-			grid [(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].GetComponent<Tile> ().environment = spawnedCity;
-			freeCoordinates.RemoveAt(0);
+            SpawnCity();
 		}
     }
 
@@ -91,10 +97,33 @@ public class GameController : MonoBehaviour {
 	
 	}
 
+    private void SpawnEnvironment(int x, int y, GameObject g)
+    {
+        int px = (int)grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].transform.position.x;
+        int py = (int)grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].transform.position.y;
+        GameObject spawnedEnvironment = Instantiate(g, new Vector3(px, py, 99), Quaternion.identity) as GameObject;
+        grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].GetComponent<Tile>().environment = spawnedEnvironment;
+        freeCoordinates.RemoveAt(0);
+    }
+
+    private void SpawnCity()
+    {
+        int sx = (int)grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].transform.position.x;
+        int sy = (int)grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].transform.position.y;
+        GameObject spawnedCity = Instantiate(city, new Vector3(sx, sy, 99), Quaternion.identity) as GameObject;
+        grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].GetComponent<Tile>().environment = spawnedCity;
+        freeCoordinates.RemoveAt(0);
+        cityList.Add(spawnedCity);
+    }
 	public int GetMapRows(){
 		return height;
 	}
 	public int GetMapCols(){
 		return width;
 	}
+
+    public void EndTurn()
+    {
+
+    }
 }

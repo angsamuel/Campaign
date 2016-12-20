@@ -17,10 +17,14 @@ public class Tile : MonoBehaviour {
     public GameObject environment; //village forest etc.
     UIBank uiBank;
 
+    public Army occupant;
+    public bool isOccupied;
+
 	// Use this for initialization 
 	void Start () {
 		GameObject uiBankObject = GameObject.Find ("UIBank") as GameObject;
         uiBank = uiBankObject.GetComponent<UIBank>();
+        isOccupied = false;
 	}
 	
 	// Update is called once per frame
@@ -57,6 +61,14 @@ public class Tile : MonoBehaviour {
                 uiBank.selectionTypeText.text = "NULL";
                 uiBank.targetLocationText.text = "NULL";
             }
+            if(occupant != null)
+            {
+                uiBank.selectionArmyText.text = occupant.GetComponent<Army>().leader.firstName + " " + occupant.GetComponent<Army>().leader.lastName;
+            }else
+            {
+               uiBank.selectionArmyText.text = "NULL";
+            }
+
 		}
 	}
 }

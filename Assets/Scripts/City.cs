@@ -16,7 +16,6 @@ public class City : Environment {
 
     UIBank uiBank;
 
-
 	void Awake(){
         armyTable = new Hashtable();
 		army = Resources.Load ("Prefabs/Army") as GameObject;
@@ -25,31 +24,30 @@ public class City : Environment {
 		storedArmies = new List<GameObject> ();
 		armies = new List<GameObject>();
 
-		//create armies
-		for (int i = 0; i < 2; ++i) {
-			CreateArmy ();
-		}
         type = "city";
+
+        // pick a random color
+        float R = Random.Range(.4f, .9f);
+        float G = Random.Range(.4f, .9f);
+        float B = Random.Range(.4f, .9f);
+        Color newColor = new Color(R, G, B, 1.0f);
+
+        // apply it on current object's material
+        GetComponent<Renderer>().material.color = newColor;
+
+        //create armies
+        for (int i = 0; i < 2; ++i)
+        {
+            CreateArmy();
+        }
     }
 
     void Start () {
-		
-		// pick a random color
-		float R = Random.Range(.4f, .9f);
-		float G = Random.Range (.4f, .9f);
-		float B = Random.Range (.4f, .9f);
-		Color newColor = new Color(R, G, B, 1.0f );
-
-		// apply it on current object's material
-		GetComponent<Renderer>().material.color = newColor; 
-
-		//Spawn Army with Same Color
 		base.Start ();
 		NameWizard nameWizard = GameObject.Find ("NameWizard").GetComponent<NameWizard> ();
 		name = nameWizard.GenerateCityName ();
-		leader = new Character();
-	
-	}
+        leader = new Character();
+    }
 
 	public void FillArmySelectCB(){
 		
