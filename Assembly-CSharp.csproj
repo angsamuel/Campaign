@@ -57,11 +57,11 @@
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\MainPanelScript.cs" />
      <Compile Include="Assets\Scripts\NameWizard.cs" />
+     <Compile Include="Assets\Scripts\OrderPanel.cs" />
      <Compile Include="Assets\Scripts\PanelDragArea.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Tile.cs" />
      <Compile Include="Assets\Scripts\UIBank.cs" />
-     <Compile Include="Assets\Scripts\WarPanel.cs" />
      <Compile Include="Assets\UIAssets\Scripts\ActiveStateToggler.cs" />
      <Compile Include="Assets\UIAssets\Scripts\ApplicationManager.cs" />
      <Compile Include="Assets\UIAssets\Scripts\CameraZoom.cs" />

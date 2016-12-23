@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour {
     public int width;
 
     public int day;
+    public bool isDay;
 
 	GameObject tile;
 	GameObject city;
@@ -34,6 +35,7 @@ public class GameController : MonoBehaviour {
     {
         cityList = new List<GameObject>();
         day = 0;
+        isDay = true;
     }
 
     // Use this for initialization
@@ -41,8 +43,6 @@ public class GameController : MonoBehaviour {
         CreateWorld();
 		uiBank = GameObject.Find ("UIBank").GetComponent<UIBank> ();
 		uiBank.OpenInfoPanel ();
-		//GameObject x = GameObject.Find ("ArmySelectCB") as GameObject;
-		//x.GetComponent<Kender.uGUI.ComboBox> ().AddItems(new List<string>(){"John","Jill","Jack"});
 	}
 
     private void CreateWorld()
@@ -80,11 +80,26 @@ public class GameController : MonoBehaviour {
 		//spawn player city
 		int px = (int)grid [(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].transform.position.x; 
 		int py = (int)grid [(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].transform.position.y;
-		playerCity = Instantiate (city,new Vector3(px, py, 99), Quaternion.identity) as GameObject;
-		grid [(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].GetComponent<Tile> ().environment = playerCity;
-		freeCoordinates.RemoveAt(0);
-		playerCity.GetComponent<City> ().FillArmySelectCB ();
+
+        playerCity = Instantiate (city,new Vector3(px, py, 99), Quaternion.identity) as GameObject;
+
+        playerCity.GetComponent<City>().position.x = (int)freeCoordinates[0].x;
+        playerCity.GetComponent<City>().position.y = (int)freeCoordinates[0].y;
+
+        grid[(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].GetComponent<Tile> ().environment = playerCity;
+        grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].GetComponent<Tile>().MakeSelected();
+
+        freeCoordinates.RemoveAt(0);
+
         playerCity.GetComponent<City>().type = "your home";
+        for (int i = 0; i < 2; ++i)
+        {
+            playerCity.GetComponent<City>().CreateArmy();
+        }
+
+        playerCity.GetComponent<City>().FillArmySelectCB();
+
+        //playerCity.GetComponent<City>().armies[0].GetComponent<Army>(). OrderMoveTo(0,0);
 
         //spawn other cities
         for (int i = 1; i < cityNumber; ++i) {
@@ -94,7 +109,6 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
     private void SpawnEnvironment(int x, int y, GameObject g)
@@ -114,6 +128,12 @@ public class GameController : MonoBehaviour {
         grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].GetComponent<Tile>().environment = spawnedCity;
         freeCoordinates.RemoveAt(0);
         cityList.Add(spawnedCity);
+
+        //create armies
+        for (int i = 0; i < 2; ++i)
+        {
+            spawnedCity.GetComponent<City>().CreateArmy();
+        }
     }
 	public int GetMapRows(){
 		return height;
@@ -122,8 +142,14 @@ public class GameController : MonoBehaviour {
 		return width;
 	}
 
-    public void EndTurn()
+    public void AdvanceTime()
     {
+        //player city takes turn
+        playerCity.GetComponent<City>().TakeTurn();
+        for (int i = 0; i < playerCity.GetComponent<City>().armies.Count; ++i)
+        {
 
+        }
+        isDay = !isDay;
     }
 }

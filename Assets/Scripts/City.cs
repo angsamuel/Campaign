@@ -4,11 +4,13 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class City : Environment {
+
+    public Vector2 position;
 	GameObject army;
 
 	Character leader;
 	int population;
-	List<GameObject> armies;
+	public List<GameObject> armies;
 
 	List<GameObject> storedArmies;
 
@@ -17,6 +19,7 @@ public class City : Environment {
     UIBank uiBank;
 
 	void Awake(){
+        position = new Vector2();
         armyTable = new Hashtable();
 		army = Resources.Load ("Prefabs/Army") as GameObject;
 		GameObject uiBankObject = GameObject.Find ("UIBank") as GameObject;
@@ -35,17 +38,13 @@ public class City : Environment {
         // apply it on current object's material
         GetComponent<Renderer>().material.color = newColor;
 
-        //create armies
-        for (int i = 0; i < 2; ++i)
-        {
-            CreateArmy();
-        }
+       
     }
 
     void Start () {
 		base.Start ();
-		NameWizard nameWizard = GameObject.Find ("NameWizard").GetComponent<NameWizard> ();
-		name = nameWizard.GenerateCityName ();
+        NameWizard nameWizard = GameObject.Find("NameWizard").GetComponent<NameWizard>();
+        name = nameWizard.GenerateCityName();
         leader = new Character();
     }
 
@@ -55,8 +54,6 @@ public class City : Environment {
 
 		for (int i = 0; i<armies.Count; ++i) {
 			armyNames.Add (armies[i].GetComponent<Army>().leader.firstName + " " + armies[i].GetComponent<Army>().leader.lastName);
-			//Debug.Log(armies[i].GetComponent<Army>().leader.firstName + "|");
-			//armyNames.Add("boi");
 		}
 		GameObject armySelectCB = uiBank.ArmySelectCB;
 		armySelectCB.GetComponent<Kender.uGUI.ComboBox> ().ClearItems ();
@@ -72,14 +69,29 @@ public class City : Environment {
 
 	}
 
-	void CreateArmy(){
+	public void CreateArmy(){
 		GameObject a = Instantiate (army,new Vector3(transform.position.x, transform.position.y, 97), Quaternion.identity) as GameObject;
+        //BANDAID!!!
+        a.GetComponent<Army>().position.x = position.x;
+        a.GetComponent<Army>().position.y = position.y;
 		a.GetComponent<Army> ().SetColor (GetComponent<Renderer> ().material.color);
 		a.GetComponent<Army> ().TeleportOffScreen ();
 		storedArmies.Add (a);
 		armies.Add (a);
         armyTable.Add(a.GetComponent<Army>().leader.firstName + " " + a.GetComponent<Army>().leader.lastName, a);
 	}
+
+    public void TakeTurn()
+    {
+        //tell all armies to take action
+        for(int i = 0; i<armies.Count; i++)
+        {
+            armies[i].GetComponent<Army>().TakeAction();
+        }
+
+
+
+    }
 
 
 }
