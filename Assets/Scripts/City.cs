@@ -4,28 +4,29 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class City : Environment {
-
+    GameController gameController;
     public Vector2 position;
 	GameObject army;
 
 	Character leader;
 	int population;
-	public List<GameObject> armies;
+	public List<Army> armies;
 
-	List<GameObject> storedArmies;
+	public List<Army> storedArmies;
 
     public Hashtable armyTable;
 
     UIBank uiBank;
 
 	void Awake(){
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         position = new Vector2();
         armyTable = new Hashtable();
 		army = Resources.Load ("Prefabs/Army") as GameObject;
 		GameObject uiBankObject = GameObject.Find ("UIBank") as GameObject;
 		uiBank = uiBankObject.GetComponent<UIBank> ();
-		storedArmies = new List<GameObject> ();
-		armies = new List<GameObject>();
+		storedArmies = new List<Army> ();
+		armies = new List<Army>();
 
         type = "city";
 
@@ -60,9 +61,12 @@ public class City : Environment {
 		armySelectCB.GetComponent<Kender.uGUI.ComboBox>().AddItems(armyNames);
 	}
 
-	public void StoreArmy(GameObject a){
-		storedArmies.Add (a);
-		a.GetComponent<Army> ().TeleportOffScreen ();
+	public void StoreArmy(Army a){
+        Debug.Log("army stored!");
+        gameController.grid[(int)a.position.x, (int)a.position.y].GetComponent<Tile>().isOccupied = false;
+        gameController.grid[(int)a.position.x, (int)a.position.y].GetComponent<Tile>().occupant = null;
+        storedArmies.Add (a);
+		a.TeleportOffScreen ();
 	}
 
 	void Update(){
@@ -76,9 +80,10 @@ public class City : Environment {
         a.GetComponent<Army>().position.y = position.y;
 		a.GetComponent<Army> ().SetColor (GetComponent<Renderer> ().material.color);
 		a.GetComponent<Army> ().TeleportOffScreen ();
-		storedArmies.Add (a);
-		armies.Add (a);
+		storedArmies.Add (a.GetComponent<Army>());
+		armies.Add (a.GetComponent<Army>());
         armyTable.Add(a.GetComponent<Army>().leader.firstName + " " + a.GetComponent<Army>().leader.lastName, a);
+        a.GetComponent<Army>().SetRulerCity(this);
 	}
 
     public void TakeTurn()

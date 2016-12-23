@@ -13,8 +13,6 @@ public class OrderPanel : MonoBehaviour {
     string previousString;
     string newString;
 
-  
-
     void Awake()
     {
         uiBank = GameObject.Find("UIBank").GetComponent<UIBank>();
@@ -32,6 +30,7 @@ public class OrderPanel : MonoBehaviour {
 
     void LateUpdate()
     {
+        string constructedString = "";
         //update information about correct army
         newString = uiBank.ArmySelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
         if (newString != previousString)
@@ -54,9 +53,16 @@ public class OrderPanel : MonoBehaviour {
 
         if (primaryObjectiveString == "deploy to")
         {
-            OrderText.text = "Proceed to coordinates (" + uiBank.selectedTile.posX +", " + uiBank.selectedTile.posY + ").";
+            constructedString = "Proceed to coordinates (" + uiBank.selectedTile.posX +", " + uiBank.selectedTile.posY + "). ";
         }
-      
+        if (secondaryObjectiveString == "hold position")
+        {
+            constructedString += "Hold position upon completion of primary objective.";
+        }else if(secondaryObjectiveString == "return home")
+        {
+            constructedString += " Return home after completion of primary objective.";
+        }
+        OrderText.text = constructedString;
     }
 
     public void GrabArmyFromPlayerCity()
@@ -91,10 +97,19 @@ public class OrderPanel : MonoBehaviour {
         switch (primaryObjectiveString)
         {
             case "deploy to":
-                armyToBeOrdered.OrderDeployTo(uiBank.selectedTile.posX, uiBank.selectedTile.posY);
+                armyToBeOrdered.OrderDeployTo(uiBank.selectedTile.posX, uiBank.selectedTile.posY, true);
                 break;
             default:
                 break;
         }
+        switch (secondaryObjectiveString)
+        {
+            case "return home":
+                armyToBeOrdered.OrderReturnHome(false);
+                break;
+            default:
+                break;
+        }
+        
     }
 }

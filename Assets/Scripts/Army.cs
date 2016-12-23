@@ -13,7 +13,16 @@ public class Army : MonoBehaviour {
 	public int soldiers;
 	Vector3 dumpPosition;
 
-	void Awake(){
+    City rulerCity;
+
+    public void SetRulerCity(City c)
+    {
+        c.armies.Remove(this);
+        c.armies.Add(this);
+        rulerCity = c;
+    }
+
+    void Awake(){
         position = new Vector2();
 		dumpPosition = new Vector3 (1000, 1000, -1000);
 		leader = new Character ();
@@ -61,27 +70,39 @@ public class Army : MonoBehaviour {
         Debug.Log(x + "," + y);
         if (!gameController.grid[x, y].GetComponent<Tile>().isOccupied)
         {
-            gameController.grid[x, y].GetComponent<Tile>().occupant = this;
-            gameController.grid[x, y].GetComponent<Tile>().isOccupied = true;
             gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().isOccupied = false;
-            transform.position = new Vector3(gameController.grid[x, y].GetComponent<Tile>().transform.position.x, gameController.grid[x, y].GetComponent<Tile>().transform.position.y, posZ);
+            gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().occupant = null;
+
             position.x = x;
             position.y = y;
 
-            if (gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().isOccupied)
-            {
-                gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().isOccupied = false;
-            }
+            gameController.grid[x, y].GetComponent<Tile>().occupant = this;
+            gameController.grid[x, y].GetComponent<Tile>().isOccupied = true;
+           
+            transform.position = new Vector3(gameController.grid[x, y].GetComponent<Tile>().transform.position.x, gameController.grid[x, y].GetComponent<Tile>().transform.position.y, posZ);
         }
         Debug.Log(gameController.grid[x, y].GetComponent<Tile>().occupant.GetComponent<Army>().leader.firstName);
     }
 
     public void MoveAdjacent(int x, int y)
     {
-        Move((int)position.x + x, (int)position.y + y);
+        if (!gameController.grid[(int)position.x + x, (int)position.y + y].GetComponent<Tile>().isOccupied)
+        {
+            Move((int)position.x + x, (int)position.y + y);
+        }else
+        {
+            int m = Random.Range(-1, 2);
+            if (x !=0)
+            {
+                Move((int)position.x, (int)position.y + m);
+            }else if(y != 0)
+            {
+                Move((int)position.x + m, (int)position.y);
+            }
+        }
     }
 
-    enum Objective { none, moveTo, capture };
+    enum Objective { none, moveTo, capture, returnHome };
     Objective primaryObjective;
     Vector2 primaryObjectiveLoc = new Vector2(-1,-1);
     Objective secondaryObjective;
@@ -96,11 +117,18 @@ public class Army : MonoBehaviour {
         {
             primaryObjective = secondaryObjective;
             secondaryObjective = Objective.none;
+            primaryObjectiveLoc = secondaryObjectiveLoc;
+            secondaryObjectiveLoc = new Vector2();
         }
 
         if (primaryObjective != Objective.none)
         {
-            if (position.x < primaryObjectiveLoc.x && position.y < primaryObjectiveLoc.y)
+            if (rulerCity.storedArmies.Contains(this))
+            {
+                rulerCity.storedArmies.Remove(this);
+                Move((int)rulerCity.position.x, (int)rulerCity.position.y);
+            }
+            else if (position.x < primaryObjectiveLoc.x && position.y < primaryObjectiveLoc.y)
             {
                 int upOrSide = Random.Range(0, 2);
                 switch (upOrSide)
@@ -147,17 +175,39 @@ public class Army : MonoBehaviour {
         switch (primaryObjective)
         {
             case Objective.moveTo:
+                primaryObjective = Objective.none;
+                break;
+            case Objective.returnHome:
+                rulerCity.StoreArmy(this);
+                primaryObjective = Objective.none;
                 break;
             default:
                 break;
         }
     }
 
-    public void OrderDeployTo(int x, int y)
+    public void OrderDeployTo(int x, int y, bool primary)
     {
-        primaryObjective = Objective.moveTo;
-        primaryObjectiveLoc.x = x;
-        primaryObjectiveLoc.y = y;
-    
+        if (primary)
+        {
+            primaryObjective = Objective.moveTo;
+            primaryObjectiveLoc = new Vector2(x, y);
+        }else {
+            secondaryObjective = Objective.moveTo;
+            secondaryObjectiveLoc = new Vector2(x, y);
+        }
+    }
+
+   public void OrderReturnHome(bool primary)
+    {
+        if (primary)
+        {
+            primaryObjective = Objective.returnHome;
+            primaryObjectiveLoc = rulerCity.position;
+        }else
+        {
+            secondaryObjective = Objective.returnHome;
+            secondaryObjectiveLoc = rulerCity.position;
+        }
     }
 }

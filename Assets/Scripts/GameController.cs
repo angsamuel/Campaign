@@ -87,11 +87,12 @@ public class GameController : MonoBehaviour {
         playerCity.GetComponent<City>().position.y = (int)freeCoordinates[0].y;
 
         grid[(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].GetComponent<Tile> ().environment = playerCity;
-        grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].GetComponent<Tile>().MakeSelected();
+       // grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].GetComponent<Tile>().MakeSelected();
 
         freeCoordinates.RemoveAt(0);
 
         playerCity.GetComponent<City>().type = "your home";
+        
         for (int i = 0; i < 2; ++i)
         {
             playerCity.GetComponent<City>().CreateArmy();
