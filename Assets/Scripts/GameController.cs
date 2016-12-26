@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour {
 
 	GameObject tile;
 	GameObject city;
+    GameObject saltFlats;
 
 	UIBank uiBank;
     
@@ -36,6 +37,7 @@ public class GameController : MonoBehaviour {
         cityList = new List<GameObject>();
         day = 0;
         isDay = true;
+        saltFlats = Resources.Load("Prefabs/SaltFlats") as GameObject;
     }
 
     // Use this for initialization
@@ -106,6 +108,11 @@ public class GameController : MonoBehaviour {
         for (int i = 1; i < cityNumber; ++i) {
             SpawnCity();
 		}
+
+        while(freeCoordinates.Count > 0)
+        {
+            SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, saltFlats);
+        }
     }
 
 	// Update is called once per frame

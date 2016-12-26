@@ -9,7 +9,6 @@ public class City : Environment {
 	GameObject army;
 
 	Character leader;
-	int population;
 	public List<Army> armies;
 
 	public List<Army> storedArmies;
@@ -47,6 +46,7 @@ public class City : Environment {
         NameWizard nameWizard = GameObject.Find("NameWizard").GetComponent<NameWizard>();
         name = nameWizard.GenerateCityName();
         leader = new Character();
+        population = Random.Range(10000, 15000);
     }
 
 	public void FillArmySelectCB(){

@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\ComboBox\Scripts\ComboBoxItem.cs" />
      <Compile Include="Assets\ComboBox\Scripts\TestComboBox.cs" />
+     <Compile Include="Assets\SaltFlatsScript.cs" />
      <Compile Include="Assets\Scripts\Army.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\City.cs" />
@@ -60,8 +61,10 @@
      <Compile Include="Assets\Scripts\OrderPanel.cs" />
      <Compile Include="Assets\Scripts\PanelDragArea.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\SaltFlats.cs" />
      <Compile Include="Assets\Scripts\Tile.cs" />
      <Compile Include="Assets\Scripts\UIBank.cs" />
+     <Compile Include="Assets\Scripts\targetLocationText.cs" />
      <Compile Include="Assets\UIAssets\Scripts\ActiveStateToggler.cs" />
      <Compile Include="Assets\UIAssets\Scripts\ApplicationManager.cs" />
      <Compile Include="Assets\UIAssets\Scripts\CameraZoom.cs" />
@@ -74,7 +77,6 @@
      <Compile Include="Assets\UIAssets\Scripts\ScrollDetailTexture.cs" />
      <Compile Include="Assets\UIAssets\Scripts\ShowSliderValue.cs" />
      <Compile Include="Assets\UIAssets\Scripts\TiltWindow.cs" />
-     <Compile Include="Assets\targetLocationText.cs" />
      <None Include="Assets\Resources\Words\village_nouns.txt" />
      <None Include="Assets\Resources\Words\adj.txt" />
      <None Include="Assets\Resources\Words\male_names.txt" />
