@@ -104,10 +104,6 @@ public class City : Environment {
         {
             armies[i].GetComponent<Army>().TakeAction();
         }
-
-
-
+        population += (int)(population * 0.015f);
     }
-
-
 }
