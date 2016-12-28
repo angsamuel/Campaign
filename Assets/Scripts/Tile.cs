@@ -47,7 +47,7 @@ public class Tile : MonoBehaviour {
 		selected = false;
     }
 
-	void OnMouseClick(){
+	public void OnMouseClick(){
 		if (selected) {
             uiBank.test = Random.Range(0, 1000000) ;
             uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, 91);
@@ -77,6 +77,19 @@ public class Tile : MonoBehaviour {
             }
 		}
 	}
+
+    public void SimulateMouseClick()
+    {
+        if (selected)
+        {
+            OnMouseClick();
+        }else
+        {
+            selected = true;
+            OnMouseClick();
+            selected = false;
+        }
+    }
 
     public void MakeSelected()
     {

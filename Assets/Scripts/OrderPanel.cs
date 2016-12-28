@@ -53,8 +53,21 @@ public class OrderPanel : MonoBehaviour {
 
         if (primaryObjectiveString == "deploy to")
         {
-            constructedString = "Proceed to coordinates (" + uiBank.selectedTile.posX +", " + uiBank.selectedTile.posY + "). ";
+           
         }
+
+        constructedString += "Proceed to coordinates (" + uiBank.selectedTile.posX + ", " + uiBank.selectedTile.posY + "). ";
+        switch (primaryObjectiveString)
+        {
+            case "deploy to":
+                break;
+            case "ravage":
+                constructedString += "Leave no one left alive.";
+                break;
+            default:
+                break;
+        }
+
         if (secondaryObjectiveString == "hold position")
         {
             constructedString += "Hold position upon completion of primary objective.";
@@ -98,6 +111,9 @@ public class OrderPanel : MonoBehaviour {
         {
             case "deploy to":
                 armyToBeOrdered.OrderDeployTo(uiBank.selectedTile.posX, uiBank.selectedTile.posY, true);
+                break;
+            case "ravage":
+                armyToBeOrdered.OrderRavage(uiBank.selectedTile.posX, uiBank.selectedTile.posY, true);
                 break;
             default:
                 break;

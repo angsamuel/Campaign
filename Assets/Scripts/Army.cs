@@ -102,7 +102,7 @@ public class Army : MonoBehaviour {
         }
     }
 
-    enum Objective { none, moveTo, capture, returnHome };
+    enum Objective { none, moveTo, capture, ravage, returnHome };
     Objective primaryObjective;
     Vector2 primaryObjectiveLoc = new Vector2(-1,-1);
     Objective secondaryObjective;
@@ -175,15 +175,17 @@ public class Army : MonoBehaviour {
         switch (primaryObjective)
         {
             case Objective.moveTo:
-                primaryObjective = Objective.none;
                 break;
             case Objective.returnHome:
                 rulerCity.StoreArmy(this);
-                primaryObjective = Objective.none;
+                break;
+            case Objective.ravage:
+                gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().environment.GetComponent<Environment>().population = 0;
                 break;
             default:
                 break;
         }
+        primaryObjective = Objective.none;
     }
 
     public void OrderDeployTo(int x, int y, bool primary)
@@ -194,6 +196,18 @@ public class Army : MonoBehaviour {
             primaryObjectiveLoc = new Vector2(x, y);
         }else {
             secondaryObjective = Objective.moveTo;
+            secondaryObjectiveLoc = new Vector2(x, y);
+        }
+    }
+
+    public void OrderRavage(int x, int y, bool primary) {
+        if (primary)
+        {
+            primaryObjective = Objective.ravage;
+            primaryObjectiveLoc = new Vector2(x, y);
+        }else
+        {
+            secondaryObjective = Objective.ravage;
             secondaryObjectiveLoc = new Vector2(x, y);
         }
     }

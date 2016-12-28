@@ -30,11 +30,11 @@ public class GameController : MonoBehaviour {
 
 	List<Vector3> freeCoordinates = new List<Vector3>();
 
-    List<GameObject> cityList;
+    public List<City> cityList;
 
     void Awake()
     {
-        cityList = new List<GameObject>();
+        cityList = new List<City>();
         day = 0;
         isDay = true;
         saltFlats = Resources.Load("Prefabs/SaltFlats") as GameObject;
@@ -89,7 +89,6 @@ public class GameController : MonoBehaviour {
         playerCity.GetComponent<City>().position.y = (int)freeCoordinates[0].y;
 
         grid[(int)freeCoordinates [0].x, (int)freeCoordinates [0].y].GetComponent<Tile> ().environment = playerCity;
-       // grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].GetComponent<Tile>().MakeSelected();
 
         freeCoordinates.RemoveAt(0);
 
@@ -102,7 +101,6 @@ public class GameController : MonoBehaviour {
 
         playerCity.GetComponent<City>().FillArmySelectCB();
 
-        //playerCity.GetComponent<City>().armies[0].GetComponent<Army>(). OrderMoveTo(0,0);
 
         //spawn other cities
         for (int i = 1; i < cityNumber; ++i) {
@@ -135,7 +133,7 @@ public class GameController : MonoBehaviour {
         GameObject spawnedCity = Instantiate(city, new Vector3(sx, sy, 99), Quaternion.identity) as GameObject;
         grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].GetComponent<Tile>().environment = spawnedCity;
         freeCoordinates.RemoveAt(0);
-        cityList.Add(spawnedCity);
+        cityList.Add(spawnedCity.GetComponent<City>());
 
         //create armies
         for (int i = 0; i < 2; ++i)
@@ -154,10 +152,21 @@ public class GameController : MonoBehaviour {
     {
         //player city takes turn
         playerCity.GetComponent<City>().TakeTurn();
-        for (int i = 0; i < playerCity.GetComponent<City>().armies.Count; ++i)
+        for (int i = 0; i < cityList.Count; ++i)
         {
-
+            cityList[i].TakeTurn();
         }
         isDay = !isDay;
+        for (int i = 0; i < cityList.Count; ++i)
+        {
+            cityList[i].RemoveIfDestroyed();
+        }
+
+        if (cityList.Count < 1)
+        {
+            Debug.Log("You Win!");
+        }
+        uiBank.selectedTile.SimulateMouseClick();
+
     }
 }

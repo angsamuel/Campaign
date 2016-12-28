@@ -49,6 +49,17 @@ public class City : Environment {
         population = Random.Range(10000, 15000);
     }
 
+    //city checks itself to see if it can still be in the game, removes itself otherwise
+    public void RemoveIfDestroyed()
+    {
+        if(population < 1)
+        {
+            gameController.cityList.Remove(this);
+            type = "whisper";
+        }
+    }
+
+
 	public void FillArmySelectCB(){
 		
 		List<string> armyNames = new List<string>();
