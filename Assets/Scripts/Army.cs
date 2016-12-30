@@ -15,6 +15,8 @@ public class Army : MonoBehaviour {
 	public int soldiers;
 	Vector3 dumpPosition;
 
+
+
     City rulerCity;
 
     public void SetRulerCity(City c)
@@ -182,7 +184,7 @@ public class Army : MonoBehaviour {
                 rulerCity.StoreArmy(this);
                 break;
             case Objective.ravage:
-                gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().environment.GetComponent<Environment>().population = 0;
+                gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().environment.GetComponent<Location>().population = 0;
                 break;
             default:
                 break;

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ComboBox\Scripts\Editor\ComboBoxEditor.cs" />
+     <None Include="Assets\link.xml" />
      <None Include="Assets\Resources\Words\village_nouns.txt" />
      <None Include="Assets\Resources\Words\adj.txt" />
      <None Include="Assets\Resources\Words\male_names.txt" />

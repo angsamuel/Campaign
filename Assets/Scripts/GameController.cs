@@ -12,8 +12,6 @@ public class GameController : MonoBehaviour {
      * store player city
      * */
     
-
-
     public int height;
     public int width;
 
@@ -27,41 +25,16 @@ public class GameController : MonoBehaviour {
 	UIBank uiBank;
     
 	public GameObject[,] grid;
-    public List<EnvironmentStruct> environmentStructList;
     //public List<int> environmentStructList;
 
     public int ppu = 32;
 
 	public int cityNumber;
 
-    public List<Environment> environmentList; //used for serialization
-
-    //Environment Save Data
-    public class JsonEnvironments
-    {
-        public EnvironmentStruct[] jsonEnvironments;
-    }
-
     public enum EnvironmentEnum
     {
         SaltFlats
     };
-
-    [Serializable]
-    public class EnvironmentStruct
-    {
-        public string name;
-        public EnvironmentEnum type;
-        public int posX;
-        public int posY;
-        public int population;
-    }
-
-    [Serializable]
-    public class GameState
-    {
-        public int[,] grid = new int[1,2];
-    }
 
     //Player Data
     public GameObject playerCity;
@@ -76,8 +49,6 @@ public class GameController : MonoBehaviour {
         day = 0;
         isDay = true;
         saltFlats = Resources.Load("Prefabs/SaltFlats") as GameObject;
-        environmentStructList = new List<EnvironmentStruct>();
-        //environmentStructList = new List<int>();
     }
 
     // Use this for initialization
@@ -137,90 +108,35 @@ public class GameController : MonoBehaviour {
 
         playerCity.GetComponent<City>().FillArmySelectCB();
 
-
         //spawn other cities
         for (int i = 1; i < cityNumber; ++i)
         {
             SpawnCity();
         }
 
-        if (!Directory.Exists(Application.dataPath + "/Saves/Test")) //generate world if it does not exist
-        {
-            while (freeCoordinates.Count > 0)
-            {
-                SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, saltFlats);
-                freeCoordinates.RemoveAt(0);
-            }
+        //if (!Directory.Exists(Application.dataPath + "/Saves/Test")) //generate world if it does not exist
+        //{
+        while (freeCoordinates.Count > 0)
+          {
+             SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, saltFlats);
+             freeCoordinates.RemoveAt(0);
+          }
 
-            //create save file
-            Directory.CreateDirectory(Application.dataPath + "/Saves/Test");
-            JsonEnvironments efj = new JsonEnvironments();
-            efj.jsonEnvironments = environmentStructList.ToArray();
-
-            string jsonEnvironmentsString = JsonUtility.ToJson(efj);
-
-            Debug.Log(jsonEnvironmentsString + "complete");
-            Debug.Log(efj.jsonEnvironments.Length);
-            System.IO.File.WriteAllText(Application.dataPath + "/Saves/Test/Environment.json", jsonEnvironmentsString);
-
-            //Debug.Log(JsonUtility.ToJson(grid[0, 0].GetComponent<Tile>().environment.GetComponent<Environment>()));
-
-            GameState myGameState = new GameState();
-            myGameState.grid[0,0] = 1;
-            Debug.Log(JsonUtility.ToJson(myGameState) + "complete");
-        }
-        else //load world from files
-        {
-            string environmentFileString = System.IO.File.ReadAllText(Application.dataPath + "/Saves/Test/Environment.json");
-            JsonEnvironments efj = JsonUtility.FromJson<JsonEnvironments>(environmentFileString);
-            SpawnEnvironmentsFromJson(efj);
-        }
+        EditorApplication.SaveScene();
     }
 
     // Update is called once per frame
     void Update () {
 	}
 
-    private Environment SpawnEnvironment(int x, int y, GameObject g)
+    private void SpawnEnvironment(int x, int y, GameObject g)
     {
         int px = (int)grid[x, y].transform.position.x;
         int py = (int)grid[x, y].transform.position.y;
         GameObject spawnedEnvironment = Instantiate(g, new Vector3(px, py, 99), Quaternion.identity) as GameObject;
         grid[x,y].GetComponent<Tile>().environment = spawnedEnvironment;
 
-
-        Environment gEnvironment = spawnedEnvironment.GetComponent<Environment>();
-        EnvironmentStruct e = new EnvironmentStruct();
-        e.name = gEnvironment.name;
-        e.type = EnvironmentEnum.SaltFlats;
-        e.population = gEnvironment.population;
-        gEnvironment.position.x = x;
-        gEnvironment.position.y = y;
-        e.posX = x;
-        e.posY = y;
-        environmentStructList.Add(e);
-
-        return g.GetComponent<Environment>();
     }
-
-    private void SpawnEnvironmentsFromJson(JsonEnvironments efj)
-    {
-        //spawn correct environments in
-        for(int i = 0; i< efj.jsonEnvironments.Length; i++)
-        {
-            EnvironmentStruct e = efj.jsonEnvironments[i];
-            switch (e.type)
-            {
-                case EnvironmentEnum.SaltFlats:
-                    SpawnEnvironment(e.posX, e.posY, saltFlats);
-                    grid[e.posX, e.posY].GetComponent<Tile>().environment.GetComponent<Environment>().population = e.population;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-   }
 
     private void SpawnCity()
     {
@@ -244,8 +160,10 @@ public class GameController : MonoBehaviour {
 		return width;
 	}
 
+
     public void AdvanceTime()
     {
+        
         //player city takes turn
         playerCity.GetComponent<City>().TakeTurn();
         for (int i = 0; i < cityList.Count; ++i)
@@ -263,6 +181,5 @@ public class GameController : MonoBehaviour {
             Debug.Log("You Win!");
         }
         uiBank.selectedTile.SimulateMouseClick();
-
     }
 }

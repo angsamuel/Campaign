@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SaltFlatsScript : Environment {
+public class SaltFlatsScript : Location {
 
     void Awake()
     {

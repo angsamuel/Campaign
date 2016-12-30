@@ -4,7 +4,7 @@ using System;
 using System.IO;
 
 [Serializable]
-public class Environment : MonoBehaviour {
+public class Location : MonoBehaviour {
 
 	public string name;
 	public string type;
@@ -32,4 +32,5 @@ public class Environment : MonoBehaviour {
 	void Update () {
 	
 	}
+
 }
