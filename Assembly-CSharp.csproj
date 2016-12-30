@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\CursorScriptOld.cs" />
      <Compile Include="Assets\Scripts\Environment.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\JsonHelper.cs" />
      <Compile Include="Assets\Scripts\MainPanelScript.cs" />
      <Compile Include="Assets\Scripts\NameWizard.cs" />
      <Compile Include="Assets\Scripts\OrderPanel.cs" />

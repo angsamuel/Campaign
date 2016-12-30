@@ -3,12 +3,17 @@ using System.Collections;
 
 public class SaltFlats : Environment {
 
+    void Awake()
+    {
+        base.Awake();
+        Debug.Log(name);
+        name = "Salt Flats";
+        type = "salt flats";
+    }
 	// Use this for initialization
 	void Start () {
         base.Start();
-        name = "Salt Flats";
-        type = "salt flats";
-        population = Random.Range(0,11);
+
 	}
 	
 	// Update is called once per frame
