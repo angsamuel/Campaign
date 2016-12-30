@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour {
      * Check For Win Condition
      * store player city
      * */
+    
+
 
     public int height;
     public int width;
@@ -55,8 +57,14 @@ public class GameController : MonoBehaviour {
         public int population;
     }
 
-	//Player Data
-	public GameObject playerCity;
+    [Serializable]
+    public class GameState
+    {
+        public int[,] grid = new int[1,2];
+    }
+
+    //Player Data
+    public GameObject playerCity;
 
 	List<Vector3> freeCoordinates = new List<Vector3>();
 
@@ -150,9 +158,16 @@ public class GameController : MonoBehaviour {
             efj.jsonEnvironments = environmentStructList.ToArray();
 
             string jsonEnvironmentsString = JsonUtility.ToJson(efj);
+
             Debug.Log(jsonEnvironmentsString + "complete");
             Debug.Log(efj.jsonEnvironments.Length);
             System.IO.File.WriteAllText(Application.dataPath + "/Saves/Test/Environment.json", jsonEnvironmentsString);
+
+            //Debug.Log(JsonUtility.ToJson(grid[0, 0].GetComponent<Tile>().environment.GetComponent<Environment>()));
+
+            GameState myGameState = new GameState();
+            myGameState.grid[0,0] = 1;
+            Debug.Log(JsonUtility.ToJson(myGameState) + "complete");
         }
         else //load world from files
         {

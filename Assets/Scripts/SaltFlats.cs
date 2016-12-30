@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using System.IO;
 
+[Serializable]
 public class SaltFlats : Environment {
 
     void Awake()
     {
         base.Awake();
-        Debug.Log(name);
         name = "Salt Flats";
         type = "salt flats";
     }

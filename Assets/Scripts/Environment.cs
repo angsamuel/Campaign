@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using System.IO;
 
+[Serializable]
 public class Environment : MonoBehaviour {
 
 	public string name;
@@ -11,7 +14,7 @@ public class Environment : MonoBehaviour {
 
     protected void Awake()
     {
-        population = Random.Range(0, 11);
+        population = UnityEngine.Random.Range(0, 11);
         uiBank = GameObject.Find("UIBank");
         name = "null";
         position = new Vector2(0, 0);

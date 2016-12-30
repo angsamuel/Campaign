@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System;
+using System.IO;
+[Serializable]
 public class Army : MonoBehaviour {
     public Vector2 position;
     int posZ = 97;
@@ -26,7 +28,7 @@ public class Army : MonoBehaviour {
         position = new Vector2();
 		dumpPosition = new Vector3 (1000, 1000, -1000);
 		leader = new Character ();
-        soldiers = Random.Range(10, 20);
+        soldiers = UnityEngine.Random.Range(10, 20);
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
@@ -91,7 +93,7 @@ public class Army : MonoBehaviour {
             Move((int)position.x + x, (int)position.y + y);
         }else
         {
-            int m = Random.Range(-1, 2);
+            int m = UnityEngine.Random.Range(-1, 2);
             if (x !=0)
             {
                 Move((int)position.x, (int)position.y + m);
@@ -130,7 +132,7 @@ public class Army : MonoBehaviour {
             }
             else if (position.x < primaryObjectiveLoc.x && position.y < primaryObjectiveLoc.y)
             {
-                int upOrSide = Random.Range(0, 2);
+                int upOrSide = UnityEngine.Random.Range(0, 2);
                 switch (upOrSide)
                 {
                     case 0:
@@ -144,7 +146,7 @@ public class Army : MonoBehaviour {
                 }
             }else if (position.x > primaryObjectiveLoc.x && position.y > primaryObjectiveLoc.y)
             {
-                int upOrSide = Random.Range(0, 2);
+                int upOrSide = UnityEngine.Random.Range(0, 2);
                 switch (upOrSide)
                 {
                     case 0:

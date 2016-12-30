@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using System;
+using System.IO;
+[Serializable]
 public class Tile : MonoBehaviour {
 
     /* scans for mouse cursor
@@ -49,7 +51,7 @@ public class Tile : MonoBehaviour {
 
 	public void OnMouseClick(){
 		if (selected) {
-            uiBank.test = Random.Range(0, 1000000) ;
+            uiBank.test = UnityEngine.Random.Range(0, 1000000) ;
             uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, 91);
             uiBank.selectionCoordText.text = "(" + posX.ToString() + ", " + posY.ToString() + ")";
             uiBank.selectedX = posX;
