@@ -61,10 +61,10 @@ public class Tile : MonoBehaviour {
            // uiBank.selectedTile = GetComponent<GameObject>();
 			if (environment != null) {
 				Debug.Log (environment.name);
-				uiBank.selectionNameText.text = environment.GetComponent<Location> ().name;
-				uiBank.selectionTypeText.text = environment.GetComponent<Location> ().type;
-                uiBank.targetLocationText.text = environment.GetComponent<Location>().name;
-                uiBank.selectionPopText.text = environment.GetComponent<Location>().population.ToString();
+				uiBank.selectionNameText.text = environment.GetComponent<Environment> ().name;
+				uiBank.selectionTypeText.text = environment.GetComponent<Environment> ().type;
+                uiBank.targetLocationText.text = environment.GetComponent<Environment>().name;
+                uiBank.selectionPopText.text = environment.GetComponent<Environment>().population.ToString();
 			} else {
                 uiBank.selectionNameText.text = "NULL";
                 uiBank.selectionTypeText.text = "NULL";
@@ -101,9 +101,9 @@ public class Tile : MonoBehaviour {
         if (environment != null)
         {
             Debug.Log(environment.name);
-            uiBank.selectionNameText.text = environment.GetComponent<Location>().name;
-            uiBank.selectionTypeText.text = environment.GetComponent<Location>().type;
-            uiBank.targetLocationText.text = environment.GetComponent<Location>().name;
+            uiBank.selectionNameText.text = environment.GetComponent<Environment>().name;
+            uiBank.selectionTypeText.text = environment.GetComponent<Environment>().type;
+            uiBank.targetLocationText.text = environment.GetComponent<Environment>().name;
         }
         else
         {

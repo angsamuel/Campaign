@@ -18,9 +18,12 @@ public class GameController : MonoBehaviour {
     public int day;
     public bool isDay;
 
-	GameObject tile;
-	GameObject city;
-    GameObject saltFlats;
+    public GameObject tile;
+    public GameObject city;
+    public GameObject saltFlats;
+
+    public GameObject gameSaverObject;
+    public GameSaver gameSaver;
 
 	UIBank uiBank;
     
@@ -30,6 +33,8 @@ public class GameController : MonoBehaviour {
     public int ppu = 32;
 
 	public int cityNumber;
+
+    public List<Environment> basicEnvironmentsList;
 
     public enum EnvironmentEnum
     {
@@ -49,6 +54,8 @@ public class GameController : MonoBehaviour {
         day = 0;
         isDay = true;
         saltFlats = Resources.Load("Prefabs/SaltFlats") as GameObject;
+        basicEnvironmentsList = new List<Environment>();
+        gameSaver = gameSaverObject.GetComponent<GameSaver>();
     }
 
     // Use this for initialization
@@ -56,6 +63,7 @@ public class GameController : MonoBehaviour {
         CreateWorld();
 		uiBank = GameObject.Find ("UIBank").GetComponent<UIBank> ();
 		uiBank.OpenInfoPanel ();
+        gameSaver.SaveGame();   
 	}
 
     private void CreateWorld()
@@ -114,15 +122,13 @@ public class GameController : MonoBehaviour {
             SpawnCity();
         }
 
-        //if (!Directory.Exists(Application.dataPath + "/Saves/Test")) //generate world if it does not exist
-        //{
+        gameSaver.LoadGame();
         while (freeCoordinates.Count > 0)
           {
-             SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, saltFlats);
+             //SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, saltFlats);
              freeCoordinates.RemoveAt(0);
           }
 
-        EditorApplication.SaveScene();
     }
 
     // Update is called once per frame
@@ -134,8 +140,11 @@ public class GameController : MonoBehaviour {
         int px = (int)grid[x, y].transform.position.x;
         int py = (int)grid[x, y].transform.position.y;
         GameObject spawnedEnvironment = Instantiate(g, new Vector3(px, py, 99), Quaternion.identity) as GameObject;
+        spawnedEnvironment.GetComponent<Environment>().position.x = x;
+        spawnedEnvironment.GetComponent<Environment>().position.y = y;
         grid[x,y].GetComponent<Tile>().environment = spawnedEnvironment;
-
+        basicEnvironmentsList.Add(spawnedEnvironment.GetComponent<Environment>());
+        
     }
 
     private void SpawnCity()

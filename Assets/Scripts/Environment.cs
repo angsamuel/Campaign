@@ -4,13 +4,14 @@ using System;
 using System.IO;
 
 [Serializable]
-public class Location : MonoBehaviour {
+public class Environment : MonoBehaviour {
 
 	public string name;
 	public string type;
 	protected GameObject uiBank;
     public int population = 0;
     public Vector2 position;
+    public int posZ = 99;
 
     protected void Awake()
     {

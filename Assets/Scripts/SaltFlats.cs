@@ -4,7 +4,7 @@ using System;
 using System.IO;
 
 [Serializable]
-public class SaltFlats : Location {
+public class SaltFlats : Environment {
 
     void Awake()
     {

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class City : Location {
+public class City : Environment {
     GameController gameController;
     public Vector2 position;
 	GameObject army;
