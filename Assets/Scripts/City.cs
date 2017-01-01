@@ -38,15 +38,14 @@ public class City : Environment {
         // apply it on current object's material
         GetComponent<Renderer>().material.color = newColor;
 
-       
-    }
-
-    void Start () {
-		base.Start ();
         NameWizard nameWizard = GameObject.Find("NameWizard").GetComponent<NameWizard>();
         name = nameWizard.GenerateCityName();
         leader = new Character();
         population = Random.Range(10000, 15000);
+    }
+
+    void Start () {
+		base.Start ();
     }
 
     //city checks itself to see if it can still be in the game, removes itself otherwise

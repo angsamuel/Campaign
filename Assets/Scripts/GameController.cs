@@ -18,6 +18,9 @@ public class GameController : MonoBehaviour {
     public int day;
     public bool isDay;
 
+    //for saving and loading, not game logic
+    public List<City> allCities;
+
     public GameObject tile;
     public GameObject city;
     public GameObject saltFlats;
@@ -66,6 +69,7 @@ public class GameController : MonoBehaviour {
         gameSaver.SaveGame();   
 	}
 
+
     private void CreateWorld()
     {
           //spawn tiles
@@ -89,7 +93,7 @@ public class GameController : MonoBehaviour {
 				    spawnedTile.GetComponent<Tile> ().posY = iy;
                 }
             }
-
+      
         //shuffle coordinates
         for (int i = 0; i < freeCoordinates.Count; i++)
         {
@@ -99,36 +103,42 @@ public class GameController : MonoBehaviour {
             freeCoordinates[randomIndex] = temp;
         }
 
-        //spawn player city
-        int px = (int)grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].transform.position.x;
-        int py = (int)grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].transform.position.y;
-        playerCity = Instantiate(city, new Vector3(px, py, 99), Quaternion.identity) as GameObject;
-        playerCity.GetComponent<City>().position.x = (int)freeCoordinates[0].x;
-        playerCity.GetComponent<City>().position.y = (int)freeCoordinates[0].y;
-        grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].GetComponent<Tile>().environment = playerCity;
-        freeCoordinates.RemoveAt(0);
-        playerCity.GetComponent<City>().type = "your home";
-
-        for (int i = 0; i < 2; ++i)
+        if (gameSaver.ProfileExists())
         {
-            playerCity.GetComponent<City>().CreateArmy();
+            gameSaver.LoadGame();
         }
-
-        playerCity.GetComponent<City>().FillArmySelectCB();
-
-        //spawn other cities
-        for (int i = 1; i < cityNumber; ++i)
+        else
         {
-            SpawnCity();
+            //spawn player city
+            int px = (int)grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].transform.position.x;
+            int py = (int)grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].transform.position.y;
+            playerCity = Instantiate(city, new Vector3(px, py, 99), Quaternion.identity) as GameObject;
+            playerCity.GetComponent<City>().position.x = (int)freeCoordinates[0].x;
+            playerCity.GetComponent<City>().position.y = (int)freeCoordinates[0].y;
+            grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].GetComponent<Tile>().environment = playerCity;
+            freeCoordinates.RemoveAt(0);
+            playerCity.GetComponent<City>().type = "your home";
+            allCities.Add(playerCity.GetComponent<City>());
+
+            for (int i = 0; i < 2; ++i)
+            {
+                playerCity.GetComponent<City>().CreateArmy();
+            }
+
+            playerCity.GetComponent<City>().FillArmySelectCB();
+
+            //spawn other cities
+            for (int i = 1; i < cityNumber; ++i)
+            {
+                SpawnCity();
+            }
+
+            while (freeCoordinates.Count > 0)
+            {
+                SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, saltFlats);
+                freeCoordinates.RemoveAt(0);
+            }
         }
-
-        gameSaver.LoadGame();
-        while (freeCoordinates.Count > 0)
-          {
-             //SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, saltFlats);
-             freeCoordinates.RemoveAt(0);
-          }
-
     }
 
     // Update is called once per frame
@@ -144,7 +154,6 @@ public class GameController : MonoBehaviour {
         spawnedEnvironment.GetComponent<Environment>().position.y = y;
         grid[x,y].GetComponent<Tile>().environment = spawnedEnvironment;
         basicEnvironmentsList.Add(spawnedEnvironment.GetComponent<Environment>());
-        
     }
 
     private void SpawnCity()
@@ -153,14 +162,18 @@ public class GameController : MonoBehaviour {
         int sy = (int)grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].transform.position.y;
         GameObject spawnedCity = Instantiate(city, new Vector3(sx, sy, 99), Quaternion.identity) as GameObject;
         grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].GetComponent<Tile>().environment = spawnedCity;
-        freeCoordinates.RemoveAt(0);
+        
         cityList.Add(spawnedCity.GetComponent<City>());
-
+        allCities.Add(spawnedCity.GetComponent<City>());
+        spawnedCity.GetComponent<City>().position.x = (int)freeCoordinates[0].x;
+        spawnedCity.GetComponent<City>().position.y = (int)freeCoordinates[0].y;
         //create armies
         for (int i = 0; i < 2; ++i)
         {
             spawnedCity.GetComponent<City>().CreateArmy();
         }
+
+        freeCoordinates.RemoveAt(0);
     }
 	public int GetMapRows(){
 		return height;
@@ -180,6 +193,8 @@ public class GameController : MonoBehaviour {
             cityList[i].TakeTurn();
         }
         isDay = !isDay;
+
+        playerCity.GetComponent<City>().RemoveIfDestroyed();
         for (int i = 0; i < cityList.Count; ++i)
         {
             cityList[i].RemoveIfDestroyed();
@@ -190,5 +205,6 @@ public class GameController : MonoBehaviour {
             Debug.Log("You Win!");
         }
         uiBank.selectedTile.SimulateMouseClick();
+        //gameSaver.SaveGame();
     }
 }
