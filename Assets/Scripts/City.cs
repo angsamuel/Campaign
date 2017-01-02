@@ -6,9 +6,8 @@ using System.Collections.Generic;
 public class City : Environment {
     GameController gameController;
     public Vector2 position;
-	GameObject army;
+	public GameObject army;
 
-	Character leader;
 	public List<Army> armies;
 
 	public List<Army> storedArmies;
@@ -43,7 +42,7 @@ public class City : Environment {
         leader = new Character();
         population = Random.Range(10000, 15000);
     }
-
+    
     void Start () {
 		base.Start ();
     }
@@ -64,26 +63,26 @@ public class City : Environment {
 		List<string> armyNames = new List<string>();
 
 		for (int i = 0; i<armies.Count; ++i) {
-			armyNames.Add (armies[i].GetComponent<Army>().leader.firstName + " " + armies[i].GetComponent<Army>().leader.lastName);
+			armyNames.Add (armies[i].leader.firstName + " " + armies[i].leader.lastName);
 		}
 		GameObject armySelectCB = uiBank.ArmySelectCB;
 		armySelectCB.GetComponent<Kender.uGUI.ComboBox> ().ClearItems ();
 		armySelectCB.GetComponent<Kender.uGUI.ComboBox>().AddItems(armyNames);
 	}
 
-	public void StoreArmy(Army a){
+	public void StoreArmy( Army a){
         Debug.Log("army stored!");
         gameController.grid[(int)a.position.x, (int)a.position.y].GetComponent<Tile>().isOccupied = false;
         gameController.grid[(int)a.position.x, (int)a.position.y].GetComponent<Tile>().occupant = null;
+        a.isStored = true;
         storedArmies.Add (a);
 		a.TeleportOffScreen ();
 	}
 
 	void Update(){
-
 	}
 
-	public void CreateArmy(){
+	public Army CreateArmy(){
 		GameObject a = Instantiate (army,new Vector3(transform.position.x, transform.position.y, 97), Quaternion.identity) as GameObject;
         //BANDAID!!!
         a.GetComponent<Army>().position.x = position.x;
@@ -92,9 +91,21 @@ public class City : Environment {
 		a.GetComponent<Army> ().TeleportOffScreen ();
 		storedArmies.Add (a.GetComponent<Army>());
 		armies.Add (a.GetComponent<Army>());
-        armyTable.Add(a.GetComponent<Army>().leader.firstName + " " + a.GetComponent<Army>().leader.lastName, a);
+        armyTable.Add(a.GetComponent<Army>().leader.firstName + " " + a.GetComponent<Army>().leader.lastName, a.GetComponent<Army>());
         a.GetComponent<Army>().SetRulerCity(this);
+        return a.GetComponent<Army>();
 	}
+
+    public void ResetArmyTable()
+    {
+        armyTable.Clear();
+        armyTable = new Hashtable();
+        for(int i = 0; i<armies.Count; ++i)
+        {
+            Army a = armies[i];
+            armyTable.Add(a.leader.firstName + " " + a.leader.lastName, a);
+        }
+    }
 
     public void TakeTurn()
     {

@@ -4,8 +4,8 @@ using System;
 using System.IO;
 [Serializable]
 public class Army : MonoBehaviour {
-    public Vector2 position;
-    int posZ = 97;
+    public Vector2 position = new Vector2(1000, 1000);
+    public int posZ = 97;
 
     Vector2 objectiveLocation;
 
@@ -13,9 +13,12 @@ public class Army : MonoBehaviour {
 
 	public Character leader;
 	public int soldiers;
-	Vector3 dumpPosition;
 
-    City rulerCity;
+	public Vector3 dumpPosition;
+
+    public City rulerCity;
+
+    public bool isStored = true;
 
     public void SetRulerCity(City c)
     {
@@ -30,14 +33,18 @@ public class Army : MonoBehaviour {
 		leader = new Character ();
         soldiers = UnityEngine.Random.Range(10, 20);
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        leader.profession = "general";
+        float newZ = transform.position.z + 1f;
+        transform.FindChild("Background").transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
+        primaryObjective = Objective.none;
+        primaryObjectiveLoc = new Vector2(-1000, -1000);
+        secondaryObjective = Objective.none;
+        secondaryObjectiveLoc = new Vector2(-1000, -1000);
     }
 
 	// Use this for initialization
 	void Start () {
-		leader.profession = "general";
-		float newZ = transform.position.z + 1f;
-		transform.FindChild ("Background").transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
-        //Move(Random.Range(0, 19), Random.Range(0, 19));
+
 	}
 
 	// Update is called once per frame
@@ -125,9 +132,10 @@ public class Army : MonoBehaviour {
 
         if (primaryObjective != Objective.none)
         {
-            if (rulerCity.storedArmies.Contains(this))
+            if (isStored)
             {
                 rulerCity.storedArmies.Remove(this);
+                isStored = false;
                 Move((int)rulerCity.position.x, (int)rulerCity.position.y);
             }
             else if (position.x < primaryObjectiveLoc.x && position.y < primaryObjectiveLoc.y)

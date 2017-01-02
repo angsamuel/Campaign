@@ -47,8 +47,6 @@
   <ItemGroup>
      <Compile Include="Assets\ComboBox\Scripts\ComboBoxItem.cs" />
      <Compile Include="Assets\ComboBox\Scripts\TestComboBox.cs" />
-     <Compile Include="Assets\GameSaver.cs" />
-     <Compile Include="Assets\SaltFlatsScript.cs" />
      <Compile Include="Assets\Scripts\Army.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\City.cs" />
@@ -57,6 +55,7 @@
      <Compile Include="Assets\Scripts\CursorScriptOld.cs" />
      <Compile Include="Assets\Scripts\Environment.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\GameSaver.cs" />
      <Compile Include="Assets\Scripts\JsonHelper.cs" />
      <Compile Include="Assets\Scripts\MainPanelScript.cs" />
      <Compile Include="Assets\Scripts\NameWizard.cs" />
@@ -64,6 +63,7 @@
      <Compile Include="Assets\Scripts\PanelDragArea.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\SaltFlats.cs" />
+     <Compile Include="Assets\Scripts\SaltFlatsScript.cs" />
      <Compile Include="Assets\Scripts\Tile.cs" />
      <Compile Include="Assets\Scripts\UIBank.cs" />
      <Compile Include="Assets\Scripts\targetLocationText.cs" />

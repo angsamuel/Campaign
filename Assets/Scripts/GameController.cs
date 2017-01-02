@@ -11,7 +11,8 @@ public class GameController : MonoBehaviour {
      * Check For Win Condition
      * store player city
      * */
-    
+    public bool gameReady = false;
+
     public int height;
     public int width;
 
@@ -66,9 +67,10 @@ public class GameController : MonoBehaviour {
         CreateWorld();
 		uiBank = GameObject.Find ("UIBank").GetComponent<UIBank> ();
 		uiBank.OpenInfoPanel ();
-        gameSaver.SaveGame();   
+        gameReady = true;
 	}
-
+    
+   
 
     private void CreateWorld()
     {
@@ -106,6 +108,7 @@ public class GameController : MonoBehaviour {
         if (gameSaver.ProfileExists())
         {
             gameSaver.LoadGame();
+            playerCity.GetComponent<City>().FillArmySelectCB();
         }
         else
         {
@@ -205,6 +208,6 @@ public class GameController : MonoBehaviour {
             Debug.Log("You Win!");
         }
         uiBank.selectedTile.SimulateMouseClick();
-        //gameSaver.SaveGame();
+        gameSaver.SaveGame();
     }
 }

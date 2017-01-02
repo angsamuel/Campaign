@@ -9,10 +9,14 @@ public class GameSaver : MonoBehaviour {
     //environments
     //cities
     //
+
+    public GameObject army;
+
     private string savePath = "/Saves/Test/";
 
     void Awake()
     {
+        army = Resources.Load("Prefabs/Army") as GameObject;
     }
 
 
@@ -50,7 +54,109 @@ public class GameSaver : MonoBehaviour {
         LoadCities();
     }
 
+    //CHARACTER SAVING-----------------------------------------------------------------------------------
+    [Serializable]
+    public class SavableCharacter
+    {
+        public string firstName;
+        public string lastName;
+        public string profession;
+    }
+
+    [Serializable]
+    public class SavableCharacters
+    {
+        public SavableCharacter[] savableCharacters;
+    }
+
+    public SavableCharacter SaveCharacter(Character c)
+    {
+        SavableCharacter sc = new SavableCharacter();
+        sc.firstName = c.firstName;
+        sc.lastName = c.lastName;
+        sc.profession = c.profession;
+
+        return sc;
+    }
+
+    public SavableCharacters SaveCharacters(List<Character> lc)
+    {
+        SavableCharacters sc = new SavableCharacters();
+        sc.savableCharacters = new SavableCharacter[lc.Count];
+        for(int i = 0; i<lc.Count; ++i)
+        {
+            sc.savableCharacters[i] = SaveCharacter(lc[i]);
+        }
+        return sc;
+    }
+
+    public Character LoadCharacter(SavableCharacter sc)
+    {
+        Character c = new Character();
+        c.firstName = sc.firstName;
+        c.lastName = sc.lastName;
+        c.profession = sc.profession;
+        return c;
+    }
+    //ARMY SAVING----------------------------------------------------------------------------------------
+    [Serializable]
+    public class SavableArmy
+    {
+        public SavableCharacter leader;
+        public int soldiers;
+        public int posX;
+        public int posY;
+        public bool isStored;
+        //something to designate sprite later on
+    }
+
+    [Serializable]
+    public class SavableArmies
+    {
+        public SavableArmy[] savableArmies;
+    }
+
+    public SavableArmies SaveArmies(List<Army> la)
+    {
+        SavableArmies sa = new SavableArmies();
+        sa.savableArmies = new SavableArmy[la.Count];
+        for(int i = 0; i<la.Count; ++i)
+        {
+            Debug.Log("leader name: " + la[i].leader.firstName);
+            sa.savableArmies[i] = new SavableArmy();
+            sa.savableArmies[i].leader = SaveCharacter(la[i].leader);
+            sa.savableArmies[i].soldiers = la[i].soldiers;
+            sa.savableArmies[i].posX = (int)la[i].position.x;
+            sa.savableArmies[i].posY = (int)la[i].position.y;
+            sa.savableArmies[i].isStored = la[i].isStored;
+        }
+        return sa;
+    }
+    
+    public List<Army> LoadArmies(SavableArmies sa)
+    {
+        GameObject gameControllerObject = GameObject.Find("GameController") as GameObject;
+        GameController gameController = gameControllerObject.GetComponent<GameController>();
+
+        List<Army> la = new List<Army>();
+        for(int i = 0; i<sa.savableArmies.Length; ++i)
+        {
+            GameObject armyObject = Instantiate(army, new Vector3(1000, 1000, -1000), Quaternion.identity) as GameObject;
+            Army a = armyObject.GetComponent<Army>();
+
+            a.leader = LoadCharacter(sa.savableArmies[i].leader);
+            a.soldiers = sa.savableArmies[i].soldiers;
+            a.position.x = sa.savableArmies[i].posX;
+            a.position.y = sa.savableArmies[i].posY;
+            a.isStored = sa.savableArmies[i].isStored;
+            armyObject.transform.position = new Vector3(1000, 1000, -1000);
+            la.Add(a);
+        }
+        return la;
+    }
+
     //CITY SAVING----------------------------------------------------------------------------------------
+
     [Serializable]
     public class SavableCity
     {
@@ -60,7 +166,9 @@ public class GameSaver : MonoBehaviour {
         public int posX;
         public int posY;
         public int posZ;
-        //color needs to go here
+        public Color color;
+        public SavableCharacter leader;
+        public SavableArmies armies;
     }
 
     [Serializable]
@@ -82,6 +190,9 @@ public class GameSaver : MonoBehaviour {
             sc.savableCities[i].posX = (int)lc[i].position.x;
             sc.savableCities[i].posY = (int)lc[i].position.y;
             sc.savableCities[i].posZ = (int)lc[i].posZ;
+            sc.savableCities[i].color = lc[i].GetComponent<Renderer>().material.color;
+            sc.savableCities[i].leader = SaveCharacter(lc[i].leader);
+            sc.savableCities[i].armies = SaveArmies(lc[i].armies);
         }
         string environmentsToJson = JsonUtility.ToJson(sc);
         System.IO.File.WriteAllText(Application.dataPath + savePath + "cities.json", environmentsToJson);
@@ -93,15 +204,62 @@ public class GameSaver : MonoBehaviour {
         GameController gameController = gameControllerObject.GetComponent<GameController>();
         
         Vector3 spawnLocation = new Vector3(gameController.grid[sc.posX, sc.posY].transform.position.x, gameController.grid[sc.posX, sc.posY].transform.position.y, sc.posZ);
+
         GameObject tempCity = Instantiate(gameController.city, spawnLocation, Quaternion.identity) as GameObject;
         tempCity.GetComponent<City>().name = sc.name;
         tempCity.GetComponent<City>().type = sc.type;
         tempCity.GetComponent<City>().population = sc.population;
         tempCity.GetComponent<City>().position.x = sc.posX;
         tempCity.GetComponent<City>().position.y = sc.posY;
+        tempCity.GetComponent<City>().GetComponent<Renderer>().material.color = sc.color;
+        tempCity.GetComponent<City>().leader = LoadCharacter(sc.leader);
+
+        //tempCity.GetComponent<City>().armies.Clear();
+        //tempCity.GetComponent<City>().armies = LoadArmies(sc.armies);
+
+        if (isPlayerCity)
+        {
+            tempCity.GetComponent<City>().ResetArmyTable();
+        }
+        Debug.Log("armytable size" + tempCity.GetComponent<City>().armyTable.Count);
+        List<Army> loadedArmies = LoadArmies(sc.armies);
+        for (int i = 0; i <loadedArmies.Count; ++i)
+        {
+            Army a = tempCity.GetComponent<City>().CreateArmy();
+            a.leader = loadedArmies[i].leader;
+            a.soldiers = loadedArmies[i].soldiers;
+            a.position.x = loadedArmies[i].position.x;
+            a.position.y = loadedArmies[i].position.y;
+            a.isStored = loadedArmies[i].isStored;
+            if (!a.isStored)
+            {
+                GameObject tempTile = gameController.grid[(int)a.position.x, (int)a.position.y];
+                a.transform.position = new Vector3(tempTile.transform.position.x, tempTile.transform.position.y, a.posZ);
+                a.rulerCity.storedArmies.Remove(a);
+            }
+            tempCity.GetComponent<City>().ResetArmyTable();
+            /*
+            //SET RULER CITY
+            tempCity.GetComponent<City>().armies[i].SetRulerCity(tempCity.GetComponent<City>());
+
+            if (!tempCity.GetComponent<City>().armies[i].isStored)
+            {
+                GameObject tempTile = gameController.grid[(int)tempCity.GetComponent<City>().armies[i].position.x, (int)tempCity.GetComponent<City>().armies[i].position.y];
+                Vector3 spawnPosition2 = new Vector3(tempTile.transform.position.x, tempTile.transform.position.y, tempCity.GetComponent<City>().armies[i].posZ);
+                tempCity.GetComponent<City>().armies[i].transform.position = spawnPosition2;
+                tempTile.GetComponent<Tile>().occupant = tempCity.GetComponent<City>().armies[i];
+            }
+            else
+            {
+                tempCity.GetComponent<City>().StoreArmy(tempCity.GetComponent<City>().armies[i]);
+            }
+            //change color of army at some point here
+            tempCity.GetComponent<City>().armies[i].SetColor(tempCity.GetComponent<City>().GetComponent<Renderer>().material.color);
+            */
+
+        }
 
         gameController.grid[sc.posX, sc.posY].GetComponent<Tile>().environment = tempCity;
-        gameController.playerCity = tempCity;
         gameController.allCities.Add(tempCity.GetComponent<City>());
 
         if (isPlayerCity)
@@ -118,7 +276,8 @@ public class GameSaver : MonoBehaviour {
         string fileString = System.IO.File.ReadAllText(Application.dataPath + savePath + "cities.json");
         SavableCities sc = new SavableCities();
         sc = JsonUtility.FromJson<SavableCities>(fileString);
-        for (int i = 0; i < sc.savableCities.Length; ++i)
+        LoadCity(sc.savableCities[0], true);
+        for (int i = 1; i < sc.savableCities.Length; ++i)
         {
             LoadCity(sc.savableCities[i], false);
         }

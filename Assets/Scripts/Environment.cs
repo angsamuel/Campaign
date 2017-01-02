@@ -13,6 +13,8 @@ public class Environment : MonoBehaviour {
     public Vector2 position;
     public int posZ = 99;
 
+    public Character leader;
+
     protected void Awake()
     {
         population = UnityEngine.Random.Range(0, 11);
