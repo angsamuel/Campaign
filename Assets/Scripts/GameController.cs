@@ -208,6 +208,7 @@ public class GameController : MonoBehaviour {
             Debug.Log("You Win!");
         }
         uiBank.selectedTile.SimulateMouseClick();
+
         gameSaver.SaveGame();
     }
 }

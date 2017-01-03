@@ -107,7 +107,15 @@ public class GameSaver : MonoBehaviour {
         public int posX;
         public int posY;
         public bool isStored;
-        //something to designate sprite later on
+
+        public Army.Objective primaryObjective = Army.Objective.none;
+        public int primaryObjectivePosX;
+        public int primaryObjectivePosY;
+
+        public Army.Objective secondaryObjective = Army.Objective.none;
+        public int secondaryObjectivePosX;
+        public int secondaryObjectivePosY;
+        //something to designate sprite later on*/
     }
 
     [Serializable]
@@ -122,13 +130,21 @@ public class GameSaver : MonoBehaviour {
         sa.savableArmies = new SavableArmy[la.Count];
         for(int i = 0; i<la.Count; ++i)
         {
-            Debug.Log("leader name: " + la[i].leader.firstName);
             sa.savableArmies[i] = new SavableArmy();
             sa.savableArmies[i].leader = SaveCharacter(la[i].leader);
             sa.savableArmies[i].soldiers = la[i].soldiers;
             sa.savableArmies[i].posX = (int)la[i].position.x;
             sa.savableArmies[i].posY = (int)la[i].position.y;
             sa.savableArmies[i].isStored = la[i].isStored;
+
+            //objectives
+            sa.savableArmies[i].primaryObjective = la[i].primaryObjective;
+            sa.savableArmies[i].primaryObjectivePosX = (int)la[i].primaryObjectiveLoc.x;
+            sa.savableArmies[i].primaryObjectivePosY = (int)la[i].primaryObjectiveLoc.y;
+
+            sa.savableArmies[i].secondaryObjective = la[i].secondaryObjective;
+            sa.savableArmies[i].secondaryObjectivePosX = (int)la[i].secondaryObjectiveLoc.x;
+            sa.savableArmies[i].secondaryObjectivePosY = (int)la[i].secondaryObjectiveLoc.y;
         }
         return sa;
     }
@@ -149,6 +165,16 @@ public class GameSaver : MonoBehaviour {
             a.position.x = sa.savableArmies[i].posX;
             a.position.y = sa.savableArmies[i].posY;
             a.isStored = sa.savableArmies[i].isStored;
+            
+            //objectives
+            a.primaryObjective = sa.savableArmies[i].primaryObjective;
+            a.primaryObjectiveLoc.x = sa.savableArmies[i].primaryObjectivePosX;
+            a.primaryObjectiveLoc.y = sa.savableArmies[i].primaryObjectivePosY;
+
+            a.secondaryObjective = sa.savableArmies[i].primaryObjective;
+            a.secondaryObjectiveLoc.x = sa.savableArmies[i].secondaryObjectivePosX;
+            a.secondaryObjectiveLoc.y = sa.savableArmies[i].secondaryObjectivePosY;
+
             armyObject.transform.position = new Vector3(1000, 1000, -1000);
             la.Add(a);
         }
@@ -231,6 +257,16 @@ public class GameSaver : MonoBehaviour {
             a.position.x = loadedArmies[i].position.x;
             a.position.y = loadedArmies[i].position.y;
             a.isStored = loadedArmies[i].isStored;
+
+            //objectives -- currently no objctive is stored in loadedarmiesF
+            a.primaryObjective = loadedArmies[i].primaryObjective;
+            a.primaryObjectiveLoc.x = loadedArmies[i].primaryObjectiveLoc.x;
+            a.primaryObjectiveLoc.y = loadedArmies[i].primaryObjectiveLoc.y;
+
+            a.secondaryObjective = loadedArmies[i].secondaryObjective;
+            a.secondaryObjectiveLoc.x = loadedArmies[i].secondaryObjectiveLoc.x;
+            a.secondaryObjectiveLoc.y = loadedArmies[i].secondaryObjectiveLoc.y;
+
             if (!a.isStored)
             {
                 GameObject tempTile = gameController.grid[(int)a.position.x, (int)a.position.y];
@@ -238,25 +274,6 @@ public class GameSaver : MonoBehaviour {
                 a.rulerCity.storedArmies.Remove(a);
             }
             tempCity.GetComponent<City>().ResetArmyTable();
-            /*
-            //SET RULER CITY
-            tempCity.GetComponent<City>().armies[i].SetRulerCity(tempCity.GetComponent<City>());
-
-            if (!tempCity.GetComponent<City>().armies[i].isStored)
-            {
-                GameObject tempTile = gameController.grid[(int)tempCity.GetComponent<City>().armies[i].position.x, (int)tempCity.GetComponent<City>().armies[i].position.y];
-                Vector3 spawnPosition2 = new Vector3(tempTile.transform.position.x, tempTile.transform.position.y, tempCity.GetComponent<City>().armies[i].posZ);
-                tempCity.GetComponent<City>().armies[i].transform.position = spawnPosition2;
-                tempTile.GetComponent<Tile>().occupant = tempCity.GetComponent<City>().armies[i];
-            }
-            else
-            {
-                tempCity.GetComponent<City>().StoreArmy(tempCity.GetComponent<City>().armies[i]);
-            }
-            //change color of army at some point here
-            tempCity.GetComponent<City>().armies[i].SetColor(tempCity.GetComponent<City>().GetComponent<Renderer>().material.color);
-            */
-
         }
 
         gameController.grid[sc.posX, sc.posY].GetComponent<Tile>().environment = tempCity;

@@ -18,13 +18,13 @@ public class MainPanelScript : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		Debug.Log("Mouse enter");
+		//Debug.Log("Mouse enter");
 		uiBank.mouseOnUI = true;
 		mouseOver = true;
 	}
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		Debug.Log("Mouse exit");
+		//Debug.Log("Mouse exit");
 		uiBank.mouseOnUI = false;
 		mouseOver = false;
 	}

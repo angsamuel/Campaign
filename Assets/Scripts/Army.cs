@@ -111,11 +111,11 @@ public class Army : MonoBehaviour {
         }
     }
 
-    enum Objective { none, moveTo, capture, ravage, returnHome };
-    Objective primaryObjective;
-    Vector2 primaryObjectiveLoc = new Vector2(-1,-1);
-    Objective secondaryObjective;
-    Vector2 secondaryObjectiveLoc = new Vector2(-1, -1);
+    public enum Objective { none, moveTo, capture, ravage, returnHome };
+    public Objective primaryObjective;
+    public Vector2 primaryObjectiveLoc = new Vector2(-1,-1);
+    public Objective secondaryObjective;
+    public Vector2 secondaryObjectiveLoc = new Vector2(-1, -1);
 
     //army proceeds towards objective
     public void TakeAction()
