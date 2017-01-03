@@ -110,7 +110,7 @@ public class GameController : MonoBehaviour {
             gameSaver.LoadGame();
             playerCity.GetComponent<City>().FillArmySelectCB();
         }
-        else
+        else //create a whoooooole new woooooorld
         {
             //spawn player city
             int px = (int)grid[(int)freeCoordinates[0].x, (int)freeCoordinates[0].y].transform.position.x;
@@ -122,6 +122,9 @@ public class GameController : MonoBehaviour {
             freeCoordinates.RemoveAt(0);
             playerCity.GetComponent<City>().type = "your home";
             allCities.Add(playerCity.GetComponent<City>());
+
+            //set new profile
+            PlayerPrefs.SetString("profile", playerCity.GetComponent<City>().name);
 
             for (int i = 0; i < 2; ++i)
             {

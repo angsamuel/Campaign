@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\ComboBox\Scripts\ComboBoxItem.cs" />
      <Compile Include="Assets\ComboBox\Scripts\TestComboBox.cs" />
+     <Compile Include="Assets\MainMenuController.cs" />
      <Compile Include="Assets\Scripts\Army.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\City.cs" />
@@ -67,6 +68,7 @@
      <Compile Include="Assets\Scripts\Tile.cs" />
      <Compile Include="Assets\Scripts\UIBank.cs" />
      <Compile Include="Assets\Scripts\targetLocationText.cs" />
+     <Compile Include="Assets\StartScreenCamera.cs" />
      <Compile Include="Assets\UIAssets\Scripts\ActiveStateToggler.cs" />
      <Compile Include="Assets\UIAssets\Scripts\ApplicationManager.cs" />
      <Compile Include="Assets\UIAssets\Scripts\CameraZoom.cs" />

@@ -9,16 +9,19 @@ public class GameSaver : MonoBehaviour {
     //environments
     //cities
     //
-
     public GameObject army;
 
-    private string savePath = "/Saves/Test/";
+    private string savePath = Application.dataPath  + "/Saves/Test/";
 
     void Awake()
     {
         army = Resources.Load("Prefabs/Army") as GameObject;
     }
 
+    public void RefreshSavePath()
+    {
+        savePath = Application.dataPath + "/Saves/" + PlayerPrefs.GetString("profile") + "/";
+    }
 
     // Use this for initialization
     void Start () {
@@ -32,17 +35,18 @@ public class GameSaver : MonoBehaviour {
 
     public bool ProfileExists()
     {
-        return (Directory.Exists(Application.dataPath + savePath));
+        return (Directory.Exists(savePath));
     }
 
     public void SaveGame()
     {
         GameObject gameControllerObject = GameObject.Find("GameController") as GameObject;
         GameController gameController = gameControllerObject.GetComponent<GameController>();
-        if (!Directory.Exists(Application.dataPath + savePath))
+        RefreshSavePath();
+        if (!Directory.Exists(savePath))
             {
                 //if it doesn't, create it
-                Directory.CreateDirectory(Application.dataPath + savePath);
+                Directory.CreateDirectory(savePath);
             }
         SaveEnvironments(gameController.basicEnvironmentsList);
         SaveCities(gameController.allCities);
@@ -221,7 +225,7 @@ public class GameSaver : MonoBehaviour {
             sc.savableCities[i].armies = SaveArmies(lc[i].armies);
         }
         string environmentsToJson = JsonUtility.ToJson(sc);
-        System.IO.File.WriteAllText(Application.dataPath + savePath + "cities.json", environmentsToJson);
+        System.IO.File.WriteAllText(savePath + "cities.json", environmentsToJson);
     }
 
     private void LoadCity(SavableCity sc, bool isPlayerCity)
@@ -290,7 +294,7 @@ public class GameSaver : MonoBehaviour {
     }
     public void LoadCities()
     {
-        string fileString = System.IO.File.ReadAllText(Application.dataPath + savePath + "cities.json");
+        string fileString = System.IO.File.ReadAllText(savePath + "cities.json");
         SavableCities sc = new SavableCities();
         sc = JsonUtility.FromJson<SavableCities>(fileString);
         LoadCity(sc.savableCities[0], true);
@@ -333,12 +337,12 @@ public class GameSaver : MonoBehaviour {
             se.savableEnvironments[i].posZ = le[i].posZ;
         }
         string environmentsToJson = JsonUtility.ToJson(se);
-        System.IO.File.WriteAllText(Application.dataPath + savePath + "environments.json", environmentsToJson);
+        System.IO.File.WriteAllText(savePath + "environments.json", environmentsToJson);
     }
 
     public void LoadEnvironments()
     {
-        string fileString = System.IO.File.ReadAllText(Application.dataPath + savePath + "environments.json");
+        string fileString = System.IO.File.ReadAllText(savePath + "environments.json");
         SavableEnvironments se = new SavableEnvironments();
         se = JsonUtility.FromJson<SavableEnvironments>(fileString);
         for(int i = 0; i<se.savableEnvironments.Length; ++i)
