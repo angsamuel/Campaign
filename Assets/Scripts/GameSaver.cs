@@ -11,10 +11,12 @@ public class GameSaver : MonoBehaviour {
     //
     public GameObject army;
 
-    private string savePath = Application.dataPath  + "/Saves/Test/";
+    private string savePath;
 
     void Awake()
     {
+        savePath = Application.dataPath + "/Saves/Test/";
+        RefreshSavePath();
         army = Resources.Load("Prefabs/Army") as GameObject;
     }
 

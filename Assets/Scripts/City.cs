@@ -66,7 +66,7 @@ public class City : Environment {
 			armyNames.Add (armies[i].leader.firstName + " " + armies[i].leader.lastName);
 		}
 		GameObject armySelectCB = uiBank.ArmySelectCB;
-		armySelectCB.GetComponent<Kender.uGUI.ComboBox> ().ClearItems ();
+		armySelectCB.GetComponent<Kender.uGUI.ComboBox>().ClearItems ();
 		armySelectCB.GetComponent<Kender.uGUI.ComboBox>().AddItems(armyNames);
 	}
 

@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\ComboBox\Scripts\ComboBoxItem.cs" />
      <Compile Include="Assets\ComboBox\Scripts\TestComboBox.cs" />
+     <Compile Include="Assets\LoadPanel.cs" />
      <Compile Include="Assets\MainMenuController.cs" />
      <Compile Include="Assets\Scripts\Army.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
