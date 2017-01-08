@@ -9,9 +9,21 @@ public class MainMenuController : MonoBehaviour {
     List<String> profiles;
     public GameObject profileSelectCB;
     public string[] files;
+    public GameObject LoadGamePanel;
+    
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ShowLoadGamePanel()
+    {
+        LoadGamePanel.SetActive(true);
+    }
 
     void Awake()
     {
+        LoadGamePanel.SetActive(false);
         profiles = new List<String>();
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetString("profile", "This will literally never be a profile");
