@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour {
     public GameObject tile;
     public GameObject city;
     public GameObject saltFlats;
+    public GameObject village;
 
     public GameObject gameSaverObject;
     public GameSaver gameSaver;
@@ -57,6 +58,7 @@ public class GameController : MonoBehaviour {
         cityList = new List<City>();
         day = 0;
         isDay = true;
+        village = Resources.Load("Prefabs/Village") as GameObject;
         saltFlats = Resources.Load("Prefabs/SaltFlats") as GameObject;
         basicEnvironmentsList = new List<Environment>();
         gameSaver = gameSaverObject.GetComponent<GameSaver>();
@@ -125,13 +127,14 @@ public class GameController : MonoBehaviour {
 
             //set new profile
             PlayerPrefs.SetString("profile", playerCity.GetComponent<City>().name);
-
             for (int i = 0; i < 2; ++i)
             {
                 playerCity.GetComponent<City>().CreateArmy();
             }
-
             playerCity.GetComponent<City>().FillArmySelectCB();
+
+           
+
 
             //spawn other cities
             for (int i = 1; i < cityNumber; ++i)
@@ -139,6 +142,15 @@ public class GameController : MonoBehaviour {
                 SpawnCity();
             }
 
+            //spawn villages
+            for(int i = 0; i<cityNumber*3; ++i)
+            {
+                SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, village);
+                freeCoordinates.RemoveAt(0);
+            }
+
+
+            //fill empty space with salt
             while (freeCoordinates.Count > 0)
             {
                 SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, saltFlats);

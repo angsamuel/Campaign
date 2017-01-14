@@ -82,6 +82,7 @@
      <Compile Include="Assets\UIAssets\Scripts\ScrollDetailTexture.cs" />
      <Compile Include="Assets\UIAssets\Scripts\ShowSliderValue.cs" />
      <Compile Include="Assets\UIAssets\Scripts\TiltWindow.cs" />
+     <Compile Include="Assets\Village.cs" />
      <None Include="Assets\link.xml" />
      <None Include="Assets\Resources\Words\village_nouns.txt" />
      <None Include="Assets\Resources\Words\adj.txt" />

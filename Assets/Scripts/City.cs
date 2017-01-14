@@ -12,6 +12,8 @@ public class City : Environment {
 
 	public List<Army> storedArmies;
 
+    public List<Village> villages;
+
     public Hashtable armyTable;
 
     UIBank uiBank;

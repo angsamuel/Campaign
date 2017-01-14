@@ -50,7 +50,7 @@ public class Tile : MonoBehaviour {
     }
 
 	public void OnMouseClick(){
-		if (selected) {
+		if (selected && !uiBank.mouseOnUI) {
             uiBank.test = UnityEngine.Random.Range(0, 1000000) ;
             uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, 91);
             uiBank.selectionCoordText.text = "(" + posX.ToString() + ", " + posY.ToString() + ")";
