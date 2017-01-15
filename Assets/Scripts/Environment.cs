@@ -12,7 +12,7 @@ public class Environment : MonoBehaviour {
     public int population = 0;
     public Vector2 position;
     public int posZ = 99;
-
+    public string owner = "";
     public Character leader;
 
     protected void Awake()
@@ -22,6 +22,7 @@ public class Environment : MonoBehaviour {
         name = "null";
         position = new Vector2(0, 0);
         type = "null";
+        owner = "N/A";
     }
 
 	// Use this for initialization
@@ -36,4 +37,18 @@ public class Environment : MonoBehaviour {
 	
 	}
 
+    public void ConnectToOwner()
+    {
+        GameObject gmo = GameObject.Find("GameController") as GameObject;
+        GameController gameController = gmo.GetComponent<GameController>();
+       // Debug.Log(owner);
+        if (gameController.cityTable.ContainsKey(owner))
+        {
+            Debug.Log(owner);
+            
+            (gameController.cityTable[owner] as City).lands.Add(this);
+            GetComponent<Renderer>().material.color = (gameController.cityTable[owner] as City).GetComponent<Renderer>().material.color;
+            Debug.Log((gameController.cityTable[owner] as City).GetComponent<Renderer>().material.color.r);
+        }
+    }
 }

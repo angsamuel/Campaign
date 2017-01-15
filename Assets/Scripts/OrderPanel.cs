@@ -121,7 +121,8 @@ public class OrderPanel : MonoBehaviour {
             case "ravage":
                 armyToBeOrdered.OrderRavage(uiBank.selectedTile.posX, uiBank.selectedTile.posY, true);
                 break;
-            default:
+            case "capture":
+                armyToBeOrdered.OrderCapture(uiBank.selectedTile.posX, uiBank.selectedTile.posY, true);
                 break;
         }
         switch (secondaryObjectiveString)

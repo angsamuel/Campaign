@@ -30,6 +30,8 @@ public class GameController : MonoBehaviour {
     public GameObject gameSaverObject;
     public GameSaver gameSaver;
 
+    public Hashtable cityTable;
+
 	UIBank uiBank;
     
 	public GameObject[,] grid;
@@ -40,6 +42,14 @@ public class GameController : MonoBehaviour {
 	public int cityNumber;
 
     public List<Environment> basicEnvironmentsList;
+
+    public void LoadCityTable()
+    {
+        for(int i = 0; i<allCities.Count; ++i)
+        {
+            cityTable[allCities[i].name] = allCities[i];
+        }
+    }
 
     public enum EnvironmentEnum
     {
@@ -62,6 +72,7 @@ public class GameController : MonoBehaviour {
         saltFlats = Resources.Load("Prefabs/SaltFlats") as GameObject;
         basicEnvironmentsList = new List<Environment>();
         gameSaver = gameSaverObject.GetComponent<GameSaver>();
+        cityTable = new Hashtable();
     }
 
     // Use this for initialization
@@ -70,10 +81,11 @@ public class GameController : MonoBehaviour {
 		uiBank = GameObject.Find ("UIBank").GetComponent<UIBank> ();
 		uiBank.OpenInfoPanel ();
         gameReady = true;
-	}
-    
-   
 
+
+
+    }
+    
     private void CreateWorld()
     {
           //spawn tiles
@@ -133,9 +145,6 @@ public class GameController : MonoBehaviour {
             }
             playerCity.GetComponent<City>().FillArmySelectCB();
 
-           
-
-
             //spawn other cities
             for (int i = 1; i < cityNumber; ++i)
             {
@@ -143,12 +152,11 @@ public class GameController : MonoBehaviour {
             }
 
             //spawn villages
-            for(int i = 0; i<cityNumber*3; ++i)
+            for (int i = 0; i<cityNumber*3; ++i)
             {
                 SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, village);
                 freeCoordinates.RemoveAt(0);
             }
-
 
             //fill empty space with salt
             while (freeCoordinates.Count > 0)
@@ -156,6 +164,19 @@ public class GameController : MonoBehaviour {
                 SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, saltFlats);
                 freeCoordinates.RemoveAt(0);
             }
+        }
+        LoadCityTable();
+
+        Debug.Log("table size " + cityTable.Count);
+
+        foreach (string key in cityTable.Keys)
+        {
+            Debug.Log(key);
+        }
+
+        for (int i = 0; i < basicEnvironmentsList.Count; ++i)
+        {
+            basicEnvironmentsList[i].ConnectToOwner();
         }
     }
 
@@ -199,8 +220,6 @@ public class GameController : MonoBehaviour {
 	public int GetMapCols(){
 		return width;
 	}
-
-
     public void AdvanceTime()
     {
         

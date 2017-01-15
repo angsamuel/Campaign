@@ -12,13 +12,14 @@ public class City : Environment {
 
 	public List<Army> storedArmies;
 
-    public List<Village> villages;
+    public List<Environment> lands;
 
     public Hashtable armyTable;
 
     UIBank uiBank;
 
 	void Awake(){
+        lands = new List<Environment>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         position = new Vector2();
         armyTable = new Hashtable();

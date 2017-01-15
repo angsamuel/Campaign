@@ -60,6 +60,7 @@ public class GameSaver : MonoBehaviour {
         LoadCities();
     }
 
+
     //CHARACTER SAVING-----------------------------------------------------------------------------------
     [Serializable]
     public class SavableCharacter
@@ -246,9 +247,6 @@ public class GameSaver : MonoBehaviour {
         tempCity.GetComponent<City>().GetComponent<Renderer>().material.color = sc.color;
         tempCity.GetComponent<City>().leader = LoadCharacter(sc.leader);
 
-        //tempCity.GetComponent<City>().armies.Clear();
-        //tempCity.GetComponent<City>().armies = LoadArmies(sc.armies);
-
         if (isPlayerCity)
         {
             tempCity.GetComponent<City>().ResetArmyTable();
@@ -316,6 +314,7 @@ public class GameSaver : MonoBehaviour {
         public int posX;
         public int posY;
         public int posZ;
+        public string owner;
     };
 
     [Serializable]
@@ -337,6 +336,8 @@ public class GameSaver : MonoBehaviour {
             se.savableEnvironments[i].posX = (int)le[i].position.x;
             se.savableEnvironments[i].posY = (int)le[i].position.y;
             se.savableEnvironments[i].posZ = le[i].posZ;
+            se.savableEnvironments[i].owner = le[i].owner;
+
         }
         string environmentsToJson = JsonUtility.ToJson(se);
         System.IO.File.WriteAllText(savePath + "environments.json", environmentsToJson);
@@ -357,10 +358,21 @@ public class GameSaver : MonoBehaviour {
     {
         GameObject gameControllerObject = GameObject.Find("GameController") as GameObject;
         GameController gameController = gameControllerObject.GetComponent<GameController>();
+        Vector3 spawnLocation = new Vector3(gameController.grid[se.posX, se.posY].transform.position.x, gameController.grid[se.posX, se.posY].transform.position.y, se.posZ);
         switch (se.type)
         {
+            case "village":
+                GameObject tempVillage = Instantiate(gameController.village, spawnLocation, Quaternion.identity) as GameObject;
+                tempVillage.GetComponent<Environment>().name = se.name;
+                tempVillage.GetComponent<Environment>().type = se.type;
+                tempVillage.GetComponent<Environment>().population = se.population;
+                tempVillage.GetComponent<Environment>().position.x = se.posX;
+                tempVillage.GetComponent<Environment>().position.y = se.posY;
+                tempVillage.GetComponent<Environment>().owner = se.owner;
+                gameController.basicEnvironmentsList.Add(tempVillage.GetComponent<Environment>());
+                gameController.grid[se.posX, se.posY].GetComponent<Tile>().environment = tempVillage;
+                break;
             default: //basic location
-                Vector3 spawnLocation = new Vector3(gameController.grid[se.posX, se.posY].transform.position.x, gameController.grid[se.posX, se.posY].transform.position.y, se.posZ);
                 GameObject tempSaltFlats = Instantiate(gameController.saltFlats, spawnLocation, Quaternion.identity) as GameObject;
                 tempSaltFlats.GetComponent<Environment>().name = se.name;
                 tempSaltFlats.GetComponent<Environment>().type = se.type;

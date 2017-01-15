@@ -65,6 +65,7 @@ public class Tile : MonoBehaviour {
 				uiBank.selectionTypeText.text = environment.GetComponent<Environment> ().type;
                 uiBank.targetLocationText.text = environment.GetComponent<Environment>().name;
                 uiBank.selectionPopText.text = environment.GetComponent<Environment>().population.ToString();
+                uiBank.selectionOwnerText.text = environment.GetComponent<Environment>().owner;
                 if (environment.GetComponent<Environment>().leader != null)
                 {
                     uiBank.selectionLeaderText.text = environment.GetComponent<Environment>().leader.firstName + " " + environment.GetComponent<Environment>().leader.lastName;

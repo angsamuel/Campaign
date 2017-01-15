@@ -15,6 +15,10 @@ public class UIBank : MonoBehaviour {
     public Tile selectedTile;
     private GameObject playerCity;
 
+    public GameObject gameController;
+
+
+
     public GameObject cursor;
 	public GameObject mainPanel;
     public GameObject basePanel;
@@ -28,6 +32,7 @@ public class UIBank : MonoBehaviour {
     public Text selectionArmyText;
     public Text selectionPopText;
     public Text selectionLeaderText;
+    public Text selectionOwnerText;
 
 	public GameObject warPanel;
 	public GameObject ArmySelectCB;

@@ -192,6 +192,12 @@ public class Army : MonoBehaviour {
             case Objective.ravage:
                 gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().environment.GetComponent<Environment>().population = 0;
                 break;
+            case Objective.capture:
+                gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().environment.GetComponent<Environment>().GetComponent<SpriteRenderer>().color = GetComponent<SpriteRenderer>().color;
+                gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().environment.GetComponent<Environment>().owner = rulerCity.name;
+                rulerCity.lands.Add(gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().environment.GetComponent<Environment>());
+                //do something idk
+                break;
             default:
                 break;
         }
@@ -232,6 +238,19 @@ public class Army : MonoBehaviour {
         {
             secondaryObjective = Objective.returnHome;
             secondaryObjectiveLoc = rulerCity.position;
+        }
+    }
+
+    public void OrderCapture(int x, int y, bool primary)
+    {
+        if (primary)
+        {
+            primaryObjective = Objective.capture;
+            primaryObjectiveLoc = new Vector2(x, y);
+        }else
+        {
+            secondaryObjective = Objective.capture;
+            secondaryObjectiveLoc = new Vector2(x, y);
         }
     }
 }
