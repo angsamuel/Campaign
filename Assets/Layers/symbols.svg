@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="symbols.svg">
+  <defs
+     id="defs4">
+    <inkscape:path-effect
+       effect="skeletal"
+       id="path-effect3026"
+       is_visible="true"
+       pattern="M 0,5 10,10 10,0 z"
+       copytype="single_stretched"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       normal_offset="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       fuse_tolerance="0" />
+    <inkscape:path-effect
+       effect="skeletal"
+       id="path-effect3014"
+       is_visible="true"
+       pattern="m -486.13591,768.97863 0,10 10,-5 z"
+       copytype="single_stretched"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       normal_offset="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       fuse_tolerance="0" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3012"
+       is_visible="true" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.16"
+     inkscape:cx="-739.68174"
+     inkscape:cy="-500.56802"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1372"
+     inkscape:window-height="751"
+     inkscape:window-x="50"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:none"
+       id="rect2990"
+       width="29393.418"
+       height="24783.082"
+       x="-751.55353"
+       y="-2584.187" />
+    <g
+       id="g3014"
+       transform="matrix(10.383076,0,0,10.15229,-8421.5157,-4659.4265)"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/mun.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         id="path3012"
+         d="m 953.09375,426.8125 -36.9375,0 0,40.5 36.9375,0 0,-40.5 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:none"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="rect2989"
+         d="m 897.52189,408.23557 0,54.53125 14.59375,0 0,-40.5 36.9375,0 0,-14.03125 -51.53125,0 z"
+         style="fill:#eeffaa;fill-opacity:1;stroke:none" />
+      <rect
+         y="426.79965"
+         x="916.14392"
+         height="82.299858"
+         width="80"
+         id="rect2987"
+         style="fill:#eeffaa;fill-opacity:1;stroke:none" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:800px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#00ffff;fill-opacity:1;stroke:none;font-family:Alien Encounters Solid;-inkscape-font-specification:Alien Encounters Solid"
+       x="606.09149"
+       y="-757.83124"
+       id="text2986"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2988"
+         x="606.09149"
+         y="-757.83124">Mun</tspan></text>
+    <g
+       id="g3041"
+       transform="matrix(0.7280342,0,0,0.7280342,496.98374,216.01027)"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/food.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         sodipodi:nodetypes="ssasssass"
+         inkscape:connector-curvature="0"
+         id="path2992"
+         d="m 4226.7256,-947.89191 c -177.854,0 -205.7265,179.61416 -279.1798,435.22455 -9.6251,33.49432 -18.012,108.11697 -33.2644,160.62397 -36.1271,124.36923 -137.3046,227.08004 -137.3046,363.460185 0,248.392785 185.0375,479.296565 449.7488,479.296565 264.7113,0 449.7719,-230.90378 449.7719,-479.296565 0,-136.375865 -101.1776,-239.090945 -137.3046,-363.460185 -15.2524,-52.507 -23.051,-127.30428 -33.2643,-160.62397 -78.3502,-255.61039 -101.3489,-435.22455 -279.203,-435.22455 z"
+         style="fill:#2aff80;fill-opacity:1;stroke:none" />
+      <path
+         inkscape:connector-curvature="0"
+         d="m 4159.3845,-819.07709 c 2.2157,-42.4564 21.0185,-80.65305 40.5779,-117.57272 28.8313,-54.42079 25.3113,-45.72785 62.4571,-98.56299 54.3159,-69.8538 119.3269,-129.9468 186.707,-186.8308 0,0 60.0394,-24.2039 60.0394,-24.2039 l 0,0 c -70.1282,56.7546 -138.2104,116.5759 -193.9208,188.0676 -35.8114,51.2821 -33.0476,43.4545 -60.3104,96.58619 -17.9583,34.99803 -35.4917,71.54001 -35.1528,111.74258 0,0 -60.3974,30.77404 -60.3974,30.77404 z"
+         id="path3032"
+         style="fill:#2aff80;fill-opacity:1;stroke:none" />
+    </g>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3045"
+       y="-757.83124"
+       x="2957.2214"
+       style="font-size:800px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#00ffff;fill-opacity:1;stroke:none;font-family:Alien Encounters Solid;-inkscape-font-specification:Alien Encounters Solid"
+       xml:space="preserve"><tspan
+         y="-757.83124"
+         x="2957.2214"
+         sodipodi:role="line"
+         id="tspan3049">food</tspan><tspan
+         y="242.16876"
+         x="2957.2214"
+         sodipodi:role="line"
+         id="tspan3053" /></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#ffffff;stroke-width:32"
+       id="path3055"
+       sodipodi:cx="7071.0679"
+       sodipodi:cy="-202.75235"
+       sodipodi:rx="919.23883"
+       sodipodi:ry="919.23883"
+       d="m 7990.3067,-202.75235 a 919.23883,919.23883 0 1 1 -1838.4777,0 919.23883,919.23883 0 1 1 1838.4777,0 z" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:32;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3063"
+       width="1024"
+       height="1024"
+       x="-238.64861"
+       y="1313.1079" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3059"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,-257.55081,778.48904)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3061"
+       width="23.394493"
+       height="146.21558"
+       x="-66.495781"
+       y="1515.5349" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,16.453069,1092.2677)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3065"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc" />
+    <rect
+       y="1829.3136"
+       x="207.5081"
+       height="146.21558"
+       width="23.394493"
+       id="rect3067"
+       style="fill:#ffffff;fill-opacity:1;stroke:none" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3069"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,376.63559,787.3279)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3071"
+       width="23.394493"
+       height="146.21558"
+       x="567.69061"
+       y="1524.3738" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,281.61811,1209.3823)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3073"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc" />
+    <rect
+       y="1946.428"
+       x="472.6731"
+       height="146.21558"
+       width="23.394493"
+       id="rect3075"
+       style="fill:#ffffff;fill-opacity:1;stroke:none" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3077"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,-191.25955,1204.9629)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3079"
+       width="23.394493"
+       height="146.21558"
+       x="-0.20453644"
+       y="1942.0087" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,-113.91975,904.44252)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3081"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc" />
+    <rect
+       y="1641.4883"
+       x="77.135269"
+       height="146.21558"
+       width="23.394493"
+       id="rect3083"
+       style="fill:#ffffff;fill-opacity:1;stroke:none" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3085"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,204.27831,904.44256)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3087"
+       width="23.394493"
+       height="146.21558"
+       x="395.33331"
+       y="1641.4883" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,51.808406,765.23091)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3089"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc" />
+    <rect
+       y="1502.2767"
+       x="242.8634"
+       height="146.21558"
+       width="23.394493"
+       id="rect3091"
+       style="fill:#ffffff;fill-opacity:1;stroke:none" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3093"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,107.05113,1364.0619)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3095"
+       width="23.394493"
+       height="146.21558"
+       x="298.10611"
+       y="2101.1077" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,-74.144986,1397.2076)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3097"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc" />
+    <rect
+       y="2134.2534"
+       x="116.91"
+       height="146.21558"
+       width="23.394493"
+       id="rect3099"
+       style="fill:#ffffff;fill-opacity:1;stroke:none" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3101"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,-321.63236,1076.7998)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3103"
+       width="23.394493"
+       height="146.21558"
+       x="-130.57736"
+       y="1813.8456" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,440.71714,1103.3163)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3105"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc" />
+    <rect
+       y="1840.3621"
+       x="631.77216"
+       height="146.21558"
+       width="23.394493"
+       id="rect3107"
+       style="fill:#ffffff;fill-opacity:1;stroke:none" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3109"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,392.10355,1397.2076)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3111"
+       width="23.394493"
+       height="146.21558"
+       x="583.15857"
+       y="2134.2534" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3171"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,-314.76999,1403.4576)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3173"
+       width="23.394493"
+       height="146.21558"
+       x="-123.715"
+       y="2140.5034" />
+    <rect
+       y="1313.1079"
+       x="-2483.7126"
+       height="1024"
+       width="1024"
+       id="rect3175"
+       style="fill:none;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,-2502.6148,778.48904)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3177"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="1515.5349"
+       x="-2311.5598"
+       height="146.21558"
+       width="23.394493"
+       id="rect3179"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3181"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,-2228.611,1092.2677)"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3183"
+       width="23.394493"
+       height="146.21558"
+       x="-2037.5559"
+       y="1829.3136"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,-1868.4284,787.3279)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3185"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="1524.3738"
+       x="-1677.3734"
+       height="146.21558"
+       width="23.394493"
+       id="rect3187"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3189"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,-1963.4459,1209.3823)"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3191"
+       width="23.394493"
+       height="146.21558"
+       x="-1772.391"
+       y="1946.428"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,-2436.3236,1204.9629)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3193"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="1942.0087"
+       x="-2245.2686"
+       height="146.21558"
+       width="23.394493"
+       id="rect3195"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3197"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,-2358.9838,904.44252)"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3199"
+       width="23.394493"
+       height="146.21558"
+       x="-2167.9287"
+       y="1641.4883"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,-2040.7857,904.44256)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3201"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="1641.4883"
+       x="-1849.7307"
+       height="146.21558"
+       width="23.394493"
+       id="rect3203"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3205"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,-2193.2556,765.23091)"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3207"
+       width="23.394493"
+       height="146.21558"
+       x="-2002.2007"
+       y="1502.2767"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,-2138.0129,1364.0619)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3209"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="2101.1077"
+       x="-1946.9579"
+       height="146.21558"
+       width="23.394493"
+       id="rect3211"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3213"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,-2319.209,1397.2076)"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3215"
+       width="23.394493"
+       height="146.21558"
+       x="-2128.1541"
+       y="2134.2534"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,-2566.6964,1076.7998)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3217"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="1813.8456"
+       x="-2375.6414"
+       height="146.21558"
+       width="23.394493"
+       id="rect3219"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;stroke:none"
+       id="path3221"
+       sodipodi:cx="919.23883"
+       sodipodi:cy="3067.6165"
+       sodipodi:rx="353.55341"
+       sodipodi:ry="353.55341"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       transform="matrix(0.22056539,0,0,0.22056539,-1804.3469,1103.3163)"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3223"
+       width="23.394493"
+       height="146.21558"
+       x="-1613.2919"
+       y="1840.3621"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,-1852.9605,1397.2076)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3225"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="2134.2534"
+       x="-1661.9055"
+       height="146.21558"
+       width="23.394493"
+       id="rect3227"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="matrix(0.22056539,0,0,0.22056539,-2559.834,1403.4576)"
+       d="m 1272.7922,3067.6165 a 353.55341,353.55341 0 1 1 -707.10678,0 353.55341,353.55341 0 1 1 707.10678,0 z"
+       sodipodi:ry="353.55341"
+       sodipodi:rx="353.55341"
+       sodipodi:cy="3067.6165"
+       sodipodi:cx="919.23883"
+       id="path3229"
+       style="fill:#ffffff;stroke:none"
+       sodipodi:type="arc"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="2140.5034"
+       x="-2368.7791"
+       height="146.21558"
+       width="23.394493"
+       id="rect3231"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/Users/Brewmaster/Desktop/trees.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>
