@@ -51,42 +51,58 @@ public class Tile : MonoBehaviour {
 
 	public void OnMouseClick(){
 		if (selected && !uiBank.mouseOnUI) {
-            uiBank.test = UnityEngine.Random.Range(0, 1000000) ;
-            uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, 91);
-            uiBank.selectionCoordText.text = "(" + posX.ToString() + ", " + posY.ToString() + ")";
-            uiBank.selectedX = posX;
-            uiBank.selectedY = posY;
-            uiBank.selectedTile = this;
-
-           // uiBank.selectedTile = GetComponent<GameObject>();
-			if (environment != null) {
-				Debug.Log (environment.name);
-				uiBank.selectionNameText.text = environment.GetComponent<Environment> ().name;
-				uiBank.selectionTypeText.text = environment.GetComponent<Environment> ().type;
-                uiBank.targetLocationText.text = environment.GetComponent<Environment>().name;
-                uiBank.selectionPopText.text = environment.GetComponent<Environment>().population.ToString();
-                uiBank.selectionOwnerText.text = environment.GetComponent<Environment>().owner;
-                if (environment.GetComponent<Environment>().leader != null)
-                {
-                    uiBank.selectionLeaderText.text = environment.GetComponent<Environment>().leader.firstName + " " + environment.GetComponent<Environment>().leader.lastName;
-                }else
-                {
-                    uiBank.selectionLeaderText.text = "N/A";
-                }
-			} else {
-                uiBank.selectionNameText.text = "NULL";
-                uiBank.selectionTypeText.text = "NULL";
-                uiBank.targetLocationText.text = "NULL";
-            }
-            if(occupant != null)
-            {
-                uiBank.selectionArmyText.text = occupant.GetComponent<Army>().leader.firstName + " " + occupant.GetComponent<Army>().leader.lastName;
-            }else
-            {
-               uiBank.selectionArmyText.text = "NULL";
-            }
+			SelectTile ();
 		}
 	}
+
+	public void MoveCursorToMe(){
+		uiBank.test = UnityEngine.Random.Range(0, 1000000) ;
+		uiBank.cursor.transform.position = new Vector3 (transform.position.x, transform.position.y, 91);
+		uiBank.selectionCoordText.text = "(" + posX.ToString() + ", " + posY.ToString() + ")";
+		uiBank.selectedX = posX;
+		uiBank.selectedY = posY;
+		uiBank.selectedTile = this;
+	}
+
+	public void SelectTile(){
+		MoveCursorToMe ();
+	
+		if (environment != null) {
+			Debug.Log (environment.name);
+			uiBank.selectionNameText.text = environment.GetComponent<Environment> ().name;
+			uiBank.selectionTypeText.text = environment.GetComponent<Environment> ().type;
+			uiBank.targetLocationText.text = environment.GetComponent<Environment>().name;
+			uiBank.selectionPopText.text = environment.GetComponent<Environment>().population.ToString();
+			uiBank.selectionOwnerText.text = environment.GetComponent<Environment>().owner;
+			if (environment.GetComponent<Environment>().leader != null)
+			{
+				uiBank.selectionLeaderText.text = environment.GetComponent<Environment>().leader.firstName + " " + environment.GetComponent<Environment>().leader.lastName;
+			}else
+			{
+				uiBank.selectionLeaderText.text = "N/A";
+			}
+		} else {
+			uiBank.selectionNameText.text = "NULL";
+			uiBank.selectionTypeText.text = "NULL";
+			uiBank.targetLocationText.text = "NULL";
+		}
+		if(occupant != null)
+		{
+			uiBank.selectionArmyText.text = occupant.GetComponent<Army>().leader.firstName + " " + occupant.GetComponent<Army>().leader.lastName;
+		}else
+		{
+			uiBank.selectionArmyText.text = "NULL";
+		}
+		//Display Territory number
+		if (environment.GetComponent<Environment> ().type == "city" || environment.GetComponent<Environment> ().type == "your home") {
+			uiBank.selctionTerritoriesText.text = environment.GetComponent<City> ().lands.Count.ToString();
+		} else {
+			uiBank.selctionTerritoriesText.text = "N/A";
+		}
+	}
+
+
+
 
     public void SimulateMouseClick()
     {

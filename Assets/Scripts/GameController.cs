@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour {
     public GameObject tile;
     public GameObject city;
     public GameObject saltFlats;
+	public GameObject forest;
     public GameObject village;
 
     public GameObject gameSaverObject;
@@ -82,7 +83,7 @@ public class GameController : MonoBehaviour {
 		uiBank.OpenInfoPanel ();
         gameReady = true;
 
-
+		grid [(int)playerCity.GetComponent<City> ().position.x, (int)playerCity.GetComponent<City> ().position.y].GetComponent<Tile> ().SelectTile (); 
 
     }
     
@@ -93,6 +94,7 @@ public class GameController : MonoBehaviour {
             grid = new GameObject[width, height];
             tile = Resources.Load("Prefabs/Tile") as GameObject;
 		    city = Resources.Load ("Prefabs/City") as GameObject;
+			forest = Resources.Load ("Prefabs/Forest") as GameObject;
 
             for (int ix = 0; ix < width; ix++)
             {
@@ -157,7 +159,11 @@ public class GameController : MonoBehaviour {
                 SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, village);
                 freeCoordinates.RemoveAt(0);
             }
-
+			//Spawn Forests -- Randomize Tree Layout Later
+			for (int i = 0; i < (width*height)*.25f; ++i) {
+				SpawnEnvironment((int)freeCoordinates[0].x, (int)freeCoordinates[0].y, forest);
+				freeCoordinates.RemoveAt(0);
+			}
             //fill empty space with salt
             while (freeCoordinates.Count > 0)
             {

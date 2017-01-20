@@ -33,6 +33,7 @@ public class UIBank : MonoBehaviour {
     public Text selectionPopText;
     public Text selectionLeaderText;
     public Text selectionOwnerText;
+	public Text selctionTerritoriesText;
 
 	public GameObject warPanel;
 	public GameObject ArmySelectCB;

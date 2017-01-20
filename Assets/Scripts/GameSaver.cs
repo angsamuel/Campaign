@@ -60,7 +60,6 @@ public class GameSaver : MonoBehaviour {
         LoadCities();
     }
 
-
     //CHARACTER SAVING-----------------------------------------------------------------------------------
     [Serializable]
     public class SavableCharacter
@@ -372,6 +371,16 @@ public class GameSaver : MonoBehaviour {
                 gameController.basicEnvironmentsList.Add(tempVillage.GetComponent<Environment>());
                 gameController.grid[se.posX, se.posY].GetComponent<Tile>().environment = tempVillage;
                 break;
+			case "forest":
+				GameObject tempForest = Instantiate(gameController.forest, spawnLocation, Quaternion.identity) as GameObject;
+				tempForest.GetComponent<Environment>().name = se.name;
+				tempForest.GetComponent<Environment>().type = se.type;
+				tempForest.GetComponent<Environment>().population = se.population;
+				tempForest.GetComponent<Environment>().position.x = se.posX;
+				tempForest.GetComponent<Environment>().position.y = se.posY;
+				gameController.basicEnvironmentsList.Add(tempForest.GetComponent<Environment>());
+				gameController.grid[se.posX, se.posY].GetComponent<Tile>().environment = tempForest;
+				break;
             default: //basic location
                 GameObject tempSaltFlats = Instantiate(gameController.saltFlats, spawnLocation, Quaternion.identity) as GameObject;
                 tempSaltFlats.GetComponent<Environment>().name = se.name;
