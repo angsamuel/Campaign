@@ -60,6 +60,19 @@ public class City : Environment {
         }
     }
 
+	private void RemoveLostVillages(){
+		List<int> indexes = new List<int> ();
+		int offset = 0;
+		for (int i = 0; i < lands.Count; ++i) {
+			if (lands [i].owner != name) {
+				indexes.Add (i);
+			}
+		}
+		for (int i = 0; i < indexes.Count; ++i) {
+			lands.RemoveAt (indexes[i]+offset);
+			offset++;
+		}
+	}
 
 	public void FillArmySelectCB(){
 		
@@ -119,4 +132,6 @@ public class City : Environment {
         }
         population += (int)(population * 0.015f);
     }
+
 }
+	

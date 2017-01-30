@@ -1,19 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Tile.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SaltFlats.cs">
     <Files>
-      <File FileName="Assets\Scripts\Tile.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UIBank.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Environment.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\City.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Cursor.cs" Line="1" Column="1" />
-      <File FileName="Assets\UIAssets\Scripts\ActiveStateToggler.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MainPanelScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\UIAssets\Scripts\ResizePanel.cs" Line="1" Column="1" />
-      <File FileName="Assets\UIAssets\Scripts\CameraZoom.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ComboBox.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NameWizard.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UIBank.cs" Line="50" Column="10" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="171" Column="45" />
+      <File FileName="Assets/Scripts/Tile.cs" Line="39" Column="4" />
+      <File FileName="Assets/Scripts/City.cs" Line="15" Column="35" />
+      <File FileName="Assets/Scripts/GameSaver.cs" Line="193" Column="25" />
+      <File FileName="Assets/Scripts/SaltFlats.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

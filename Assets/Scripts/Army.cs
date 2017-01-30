@@ -189,20 +189,33 @@ public class Army : MonoBehaviour {
             case Objective.returnHome:
                 rulerCity.StoreArmy(this);
                 break;
-            case Objective.ravage:
-                gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().environment.GetComponent<Environment>().population = 0;
+			case Objective.ravage:
+				Ravage ();
                 break;
-            case Objective.capture:
-                gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().environment.GetComponent<Environment>().GetComponent<SpriteRenderer>().color = GetComponent<SpriteRenderer>().color;
-                gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().environment.GetComponent<Environment>().owner = rulerCity.name;
-                rulerCity.lands.Add(gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().environment.GetComponent<Environment>());
-                //do something idk
+			case Objective.capture:
+			    Capture ();
                 break;
             default:
                 break;
         }
         primaryObjective = Objective.none;
     }
+
+	private void Ravage(){
+		gameController.grid[(int)position.x, (int)position.y].GetComponent<Tile>().environment.GetComponent<Environment>().population = 0;
+	}
+
+	private void Capture(){
+		string targetType = gameController.grid [(int)position.x, (int)position.y].GetComponent<Tile> ().environment.GetComponent<Environment> ().type;
+		if (targetType == "city" || targetType == "village") {
+			if (gameController.grid [(int)position.x, (int)position.y].GetComponent<Tile> ().environment.GetComponent<Environment> ().owner != rulerCity.name) {
+				gameController.grid [(int)position.x, (int)position.y].GetComponent<Tile> ().environment.GetComponent<Environment> ().GetComponent<SpriteRenderer> ().color = GetComponent<SpriteRenderer> ().color;
+				gameController.grid [(int)position.x, (int)position.y].GetComponent<Tile> ().environment.GetComponent<Environment> ().owner = rulerCity.name;
+				rulerCity.lands.Add (gameController.grid [(int)position.x, (int)position.y].GetComponent<Tile> ().environment.GetComponent<Environment> ());
+			}
+		}
+		//do something idk
+	}
 
     public void OrderDeployTo(int x, int y, bool primary)
     {
