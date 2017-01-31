@@ -124,7 +124,8 @@ public class GameController : MonoBehaviour {
         if (gameSaver.ProfileExists())
         {
             gameSaver.LoadGame();
-            playerCity.GetComponent<City>().FillArmySelectCB();
+            //playerCity.GetComponent<City>().FillArmySelectCB();
+			playerCity.GetComponent<City> ().FillArmySelectDropdown ();
         }
         else //create a whoooooole new woooooorld
         {

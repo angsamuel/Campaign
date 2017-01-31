@@ -34,14 +34,16 @@ public class OrderPanel : MonoBehaviour {
         {
             string constructedString = "";
             //update information about correct army
-            newString = uiBank.ArmySelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
+            //newString = uiBank.ArmySelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
+			newString = uiBank.ArmySelectDropdown.GetComponentInChildren<Text>().text;
             if (newString != previousString)
             {
                 previousString = newString;
                 GrabArmyFromPlayerCity();
             }
-            string armyString = uiBank.ArmySelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
-            bool orderIsFalid = false;
+            //string armyString = uiBank.ArmySelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
+			string armyString = uiBank.ArmySelectDropdown.GetComponentInChildren<Text>().text;
+			bool orderIsFalid = false;
             if (armyString == "...")
             {
                 OrderHeader.text = "PLEASE SPECIFY COMMANDER";
@@ -84,16 +86,20 @@ public class OrderPanel : MonoBehaviour {
 
     public void GrabArmyFromPlayerCity()
     {
-        if (gameController.playerCity.GetComponent<City>().armyTable.ContainsKey(uiBank.ArmySelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text)) {
+        /*if (gameController.playerCity.GetComponent<City>().armyTable.ContainsKey(uiBank.ArmySelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text)) {
             Army armyInQuestion = gameController.playerCity.GetComponent<City>().armyTable[uiBank.ArmySelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text] as Army;
             uiBank.soldiersNumText.text = armyInQuestion.soldiers.ToString();
-        }
+        }*/
+		if (gameController.playerCity.GetComponent<City> ().armyTable.ContainsKey (uiBank.ArmySelectDropdown.GetComponentInChildren<Text>().text)) {
+			Army armyInQuestion = gameController.playerCity.GetComponent<City>().armyTable[uiBank.ArmySelectDropdown.GetComponentInChildren<Text>().text] as Army;
+			uiBank.soldiersNumText.text = armyInQuestion.soldiers.ToString();
+		}
    }
     //issues order to army based on UI
     public void IssueOrder()
     {
-        string armyString = uiBank.ArmySelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
-
+        //string armyString = uiBank.ArmySelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
+		string armyString = uiBank.ArmySelectDropdown.GetComponentInChildren<Text>().text;
         switch (armyString)
         {
             case "...":

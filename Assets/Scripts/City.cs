@@ -85,7 +85,14 @@ public class City : Environment {
 		armySelectCB.GetComponent<Kender.uGUI.ComboBox>().ClearItems ();
 		armySelectCB.GetComponent<Kender.uGUI.ComboBox>().AddItems(armyNames);
 	}
-
+	public void FillArmySelectDropdown(){
+		List<string> armyNames = new List<string> ();
+		for (int i = 0; i<armies.Count; ++i) {
+			armyNames.Add (armies[i].leader.firstName + " " + armies[i].leader.lastName);
+		}
+		Dropdown armySelectDropdown = uiBank.ArmySelectDropdown;
+		armySelectDropdown.AddOptions (armyNames);
+	}
 	public void StoreArmy( Army a){
         Debug.Log("army stored!");
         gameController.grid[(int)a.position.x, (int)a.position.y].GetComponent<Tile>().isOccupied = false;
