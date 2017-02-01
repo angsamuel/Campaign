@@ -146,8 +146,7 @@ public class GameController : MonoBehaviour {
             {
                 playerCity.GetComponent<City>().CreateArmy();
             }
-            playerCity.GetComponent<City>().FillArmySelectCB();
-
+			playerCity.GetComponent<City> ().FillArmySelectDropdown ();
             //spawn other cities
             for (int i = 1; i < cityNumber; ++i)
             {
@@ -249,6 +248,7 @@ public class GameController : MonoBehaviour {
             Debug.Log("You Win!");
         }
         uiBank.selectedTile.SimulateMouseClick();
+
 
         gameSaver.SaveGame();
     }

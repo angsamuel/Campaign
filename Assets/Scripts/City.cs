@@ -19,6 +19,7 @@ public class City : Environment {
     UIBank uiBank;
 
 	void Awake(){
+		owner = "N/A";
         lands = new List<Environment>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         position = new Vector2();
@@ -74,17 +75,6 @@ public class City : Environment {
 		}
 	}
 
-	public void FillArmySelectCB(){
-		
-		List<string> armyNames = new List<string>();
-
-		for (int i = 0; i<armies.Count; ++i) {
-			armyNames.Add (armies[i].leader.firstName + " " + armies[i].leader.lastName);
-		}
-		GameObject armySelectCB = uiBank.ArmySelectCB;
-		armySelectCB.GetComponent<Kender.uGUI.ComboBox>().ClearItems ();
-		armySelectCB.GetComponent<Kender.uGUI.ComboBox>().AddItems(armyNames);
-	}
 	public void FillArmySelectDropdown(){
 		List<string> armyNames = new List<string> ();
 		for (int i = 0; i<armies.Count; ++i) {

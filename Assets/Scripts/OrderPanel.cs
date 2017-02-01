@@ -52,8 +52,11 @@ public class OrderPanel : MonoBehaviour {
             {
                 OrderHeader.text = "My Faithful " + armyString;
             }
-            string primaryObjectiveString = uiBank.actionSelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
-            string secondaryObjectiveString = uiBank.returnActionSelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
+            //string primaryObjectiveString = uiBank.actionSelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
+            //string secondaryObjectiveString = uiBank.returnActionSelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
+
+			string primaryObjectiveString = uiBank.actionSelectDD.GetComponentInChildren<Text>().text;
+			string secondaryObjectiveString = uiBank.returnActionDD.GetComponentInChildren<Text> ().text;
 
             if (primaryObjectiveString == "deploy to")
             {
@@ -117,9 +120,12 @@ public class OrderPanel : MonoBehaviour {
     }
     private void AssignOrders(Army armyToBeOrdered)
     {
-        string primaryObjectiveString = uiBank.actionSelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
-        string secondaryObjectiveString = uiBank.returnActionSelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
-        switch (primaryObjectiveString)
+        //string primaryObjectiveString = uiBank.actionSelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
+        //string secondaryObjectiveString = uiBank.returnActionSelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text;
+		string primaryObjectiveString = uiBank.actionSelectDD.GetComponentInChildren<Text>().text;
+		string secondaryObjectiveString = uiBank.returnActionDD.GetComponentInChildren<Text> ().text;
+
+		switch (primaryObjectiveString)
         {
             case "deploy to":
                 armyToBeOrdered.OrderDeployTo(uiBank.selectedTile.posX, uiBank.selectedTile.posY, true);

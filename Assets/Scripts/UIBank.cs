@@ -36,11 +36,13 @@ public class UIBank : MonoBehaviour {
 	public Text selctionTerritoriesText;
 
 	public GameObject warPanel;
-	public GameObject ArmySelectCB;
+	//public GameObject ArmySelectCB;
     public Dropdown ArmySelectDropdown;
      
     public Text soldiersNumText;
     public GameObject actionSelectCB;
+	public Dropdown actionSelectDD;
+	public Dropdown returnActionDD;
     public GameObject returnActionSelectCB;
     public GameObject orderDocument;
 

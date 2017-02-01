@@ -183,6 +183,7 @@ public class GameSaver : MonoBehaviour {
 
             armyObject.transform.position = new Vector3(1000, 1000, -1000);
             la.Add(a);
+			gameController.grid [sa.savableArmies [i].posX, sa.savableArmies [i].posY].GetComponent<Tile>().occupant = a;
         }
         return la;
     }
