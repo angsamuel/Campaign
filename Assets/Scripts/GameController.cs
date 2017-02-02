@@ -12,12 +12,13 @@ public class GameController : MonoBehaviour {
      * store player city
      * */
     public bool gameReady = false;
-
     public int height;
     public int width;
 
-    public int day;
-    public bool isDay;
+	//Time info
+    public int day=1;
+    public bool sunUp=true;
+	public int dayOfWeek=1;
 
     //for saving and loading, not game logic
     public List<City> allCities;
@@ -67,8 +68,7 @@ public class GameController : MonoBehaviour {
     void Awake()
     {
         cityList = new List<City>();
-        day = 0;
-        isDay = true;
+        day = 1;
         village = Resources.Load("Prefabs/Village") as GameObject;
         saltFlats = Resources.Load("Prefabs/SaltFlats") as GameObject;
         basicEnvironmentsList = new List<Environment>();
@@ -82,9 +82,7 @@ public class GameController : MonoBehaviour {
 		uiBank = GameObject.Find ("UIBank").GetComponent<UIBank> ();
 		uiBank.OpenInfoPanel ();
         gameReady = true;
-
 		grid [(int)playerCity.GetComponent<City> ().position.x, (int)playerCity.GetComponent<City> ().position.y].GetComponent<Tile> ().SelectTile (); 
-
     }
     
     private void CreateWorld()
@@ -228,28 +226,34 @@ public class GameController : MonoBehaviour {
 	}
     public void AdvanceTime()
     {
-        
         //player city takes turn
         playerCity.GetComponent<City>().TakeTurn();
+		//other cities take turns
         for (int i = 0; i < cityList.Count; ++i)
         {
             cityList[i].TakeTurn();
         }
-        isDay = !isDay;
-
         playerCity.GetComponent<City>().RemoveIfDestroyed();
         for (int i = 0; i < cityList.Count; ++i)
         {
             cityList[i].RemoveIfDestroyed();
         }
 
-        if (cityList.Count < 1)
-        {
-            Debug.Log("You Win!");
-        }
         uiBank.selectedTile.SimulateMouseClick();
-
-
-        gameSaver.SaveGame();
+		//Time Stuff
+		if (!sunUp) {
+			day++;
+			dayOfWeek++;
+			if (dayOfWeek > 7) {
+				dayOfWeek = 1;
+				for (int i = 0; i < cityList.Count; ++i) {
+					cityList [i].CollectFromVillages ();
+				}
+			}
+		}
+		uiBank.weekText.text = dayOfWeek.ToString() + "/7";
+		uiBank.dayText.text = "DAY " + day.ToString();
+		sunUp = !sunUp;
+		gameSaver.SaveGame();
     }
 }

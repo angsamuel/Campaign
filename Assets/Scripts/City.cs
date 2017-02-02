@@ -7,6 +7,8 @@ public class City : Environment {
     GameController gameController;
     public Vector2 position;
 	public GameObject army;
+	public int food;
+	public int muns;
 
 	public List<Army> armies;
 
@@ -129,6 +131,13 @@ public class City : Environment {
         }
         population += (int)(population * 0.015f);
     }
+	public void CollectFromVillages(){
+		for (int i = 0; i < lands.Count; ++i) {
+			food += lands [i].GetComponent<Village> ().ProduceFood();
+			muns += lands [i].GetComponent<Village> ().ProduceMun();
+		}
+
+	}
 
 }
 	

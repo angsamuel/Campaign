@@ -48,6 +48,11 @@ public class UIBank : MonoBehaviour {
 
     public Text targetLocationText;
 
+	//Time--------------------------
+	public Text dayText;
+	public Text weekText;
+
+
 
 	//Panels
 	// Use this for initialization
@@ -65,7 +70,6 @@ public class UIBank : MonoBehaviour {
 	public void DefaultSelection(){
 		selectionNameText.text = "Lanada Rue";
 		selectionTypeText.text = "The Land of Regret";
-
 	}
 
 	public void DisableAllPanels(){

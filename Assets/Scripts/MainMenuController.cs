@@ -4,10 +4,10 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine.UI;
-
+using System.Linq;
 public class MainMenuController : MonoBehaviour {
     List<String> profiles;
-    public GameObject profileSelectCB;
+	public Dropdown profileSelectDD;
     public string[] files;
     public GameObject LoadGamePanel;
     
@@ -38,8 +38,10 @@ public class MainMenuController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        profileSelectCB.GetComponent<Kender.uGUI.ComboBox>().ClearItems();
-        profileSelectCB.GetComponent<Kender.uGUI.ComboBox>().AddItems(files);
+        //profileSelectCB.GetComponent<Kender.uGUI.ComboBox>().ClearItems();
+        //profileSelectCB.GetComponent<Kender.uGUI.ComboBox>().AddItems(files);
+		profileSelectDD.ClearOptions ();
+		profileSelectDD.AddOptions (files.ToList());
     }
 	
     void LateUpdate()
@@ -60,7 +62,8 @@ public class MainMenuController : MonoBehaviour {
 
     public void LoadSavedGame()
     {
-        PlayerPrefs.SetString("profile", profileSelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text);
-        Application.LoadLevel("OverWorld");
+        //PlayerPrefs.SetString("profile", profileSelectCB.GetComponent<Kender.uGUI.ComboBox>()._comboTextRectTransform.GetComponent<Text>().text);
+		PlayerPrefs.SetString ("profile", profileSelectDD.GetComponentInChildren<Text> ().text);
+		Application.LoadLevel("OverWorld");
     }
 }
