@@ -10,6 +10,7 @@ public class GameSaver : MonoBehaviour {
     //cities
     //
     public GameObject army;
+    public GameObject uiBank;
 
     private string savePath;
 
@@ -52,13 +53,58 @@ public class GameSaver : MonoBehaviour {
             }
         SaveEnvironments(gameController.basicEnvironmentsList);
         SaveCities(gameController.allCities);
+       SaveGameData(gameController);
     }
 
     public void LoadGame()
     {
         LoadEnvironments();
         LoadCities();
+        LoadGameData();
     }
+   //GAMEDATA SAVING-------------------------------------------------------------------------------------
+   [Serializable]
+   public class SavableGameData
+    {
+        public int day;
+    }
+    public void SaveGameData(GameController gameController)
+    {
+        SavableGameData sgd = new SavableGameData();
+        sgd.day = gameController.day;
+        string sgdString = JsonUtility.ToJson(sgd);
+        System.IO.File.WriteAllText(savePath + "gamedata.json", sgdString);
+    }
+    public void LoadGameData()
+    {
+        GameObject gameControllerObject = GameObject.Find("GameController") as GameObject;
+        GameController gameController = gameControllerObject.GetComponent<GameController>();
+
+        string fileString = System.IO.File.ReadAllText(savePath + "gamedata.json");
+        SavableGameData sgd = new SavableGameData();
+        sgd = JsonUtility.FromJson<SavableGameData>(fileString);
+
+
+        gameController.day = sgd.day;
+        if(sgd.day % 7 == 0)
+        {
+            gameController.dayOfWeek = 1;
+        }else
+        {
+            gameController.dayOfWeek = sgd.day % 7;
+        }
+        if(sgd.day%2 == 1)
+        {
+            gameController.sunUp = true;
+        }else
+        {
+            gameController.sunUp = false;
+        }
+        //maybe write a function for this later
+        uiBank.GetComponent<UIBank>().dayText.text = "DAY " + sgd.day.ToString();
+        uiBank.GetComponent<UIBank>().weekText.text = gameController.dayOfWeek.ToString() + "/7";
+    }
+
 
     //CHARACTER SAVING-----------------------------------------------------------------------------------
     [Serializable]
@@ -199,6 +245,8 @@ public class GameSaver : MonoBehaviour {
         public int posX;
         public int posY;
         public int posZ;
+        public int food;
+        public int muns;
         public Color color;
         public SavableCharacter leader;
         public SavableArmies armies;
@@ -226,6 +274,8 @@ public class GameSaver : MonoBehaviour {
             sc.savableCities[i].color = lc[i].GetComponent<Renderer>().material.color;
             sc.savableCities[i].leader = SaveCharacter(lc[i].leader);
             sc.savableCities[i].armies = SaveArmies(lc[i].armies);
+            sc.savableCities[i].food = (lc[i].food);
+            sc.savableCities[i].muns = (lc[i].muns);
         }
         string environmentsToJson = JsonUtility.ToJson(sc);
         System.IO.File.WriteAllText(savePath + "cities.json", environmentsToJson);
@@ -303,6 +353,8 @@ public class GameSaver : MonoBehaviour {
             LoadCity(sc.savableCities[i], false);
         }
     }
+    //VillageSavin
+
 
     //ENVIRONMENT SAVING---------------------------------------------------------------------------------
     [Serializable]
@@ -371,6 +423,7 @@ public class GameSaver : MonoBehaviour {
                 tempVillage.GetComponent<Environment>().owner = se.owner;
                 gameController.basicEnvironmentsList.Add(tempVillage.GetComponent<Environment>());
                 gameController.grid[se.posX, se.posY].GetComponent<Tile>().environment = tempVillage;
+                gameController.villageList.Add(tempVillage.GetComponent<Village>());
                 break;
 			case "forest":
 				GameObject tempForest = Instantiate(gameController.forest, spawnLocation, Quaternion.identity) as GameObject;

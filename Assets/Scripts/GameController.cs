@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour {
 
 	//Time info
     public int day=1;
-    public bool sunUp=true;
+    public bool sunUp;
 	public int dayOfWeek=1;
 
     //for saving and loading, not game logic
@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour {
 	public int cityNumber;
 
     public List<Environment> basicEnvironmentsList;
+    public List<Village> villageList;
 
     public void LoadCityTable()
     {
@@ -67,6 +68,8 @@ public class GameController : MonoBehaviour {
 
     void Awake()
     {
+        sunUp = true;
+        villageList = new List<Village>();
         cityList = new List<City>();
         day = 1;
         village = Resources.Load("Prefabs/Village") as GameObject;
@@ -82,7 +85,9 @@ public class GameController : MonoBehaviour {
 		uiBank = GameObject.Find ("UIBank").GetComponent<UIBank> ();
 		uiBank.OpenInfoPanel ();
         gameReady = true;
-		grid [(int)playerCity.GetComponent<City> ().position.x, (int)playerCity.GetComponent<City> ().position.y].GetComponent<Tile> ().SelectTile (); 
+		grid [(int)playerCity.GetComponent<City> ().position.x, (int)playerCity.GetComponent<City> ().position.y].GetComponent<Tile> ().SelectTile ();
+        uiBank.munText.text = playerCity.GetComponent<City>().muns.ToString();
+        uiBank.foodText.text = playerCity.GetComponent<City>().food.ToString();
     }
     
     private void CreateWorld()
@@ -145,6 +150,8 @@ public class GameController : MonoBehaviour {
                 playerCity.GetComponent<City>().CreateArmy();
             }
 			playerCity.GetComponent<City> ().FillArmySelectDropdown ();
+
+
             //spawn other cities
             for (int i = 1; i < cityNumber; ++i)
             {
@@ -182,6 +189,10 @@ public class GameController : MonoBehaviour {
         {
             basicEnvironmentsList[i].ConnectToOwner();
         }
+        for (int i = 0; i < villageList.Count; ++i)
+        {
+            villageList[i].ConnectToOwner();
+        }
     }
 
     // Update is called once per frame
@@ -196,6 +207,10 @@ public class GameController : MonoBehaviour {
         spawnedEnvironment.GetComponent<Environment>().position.x = x;
         spawnedEnvironment.GetComponent<Environment>().position.y = y;
         grid[x,y].GetComponent<Tile>().environment = spawnedEnvironment;
+        if (spawnedEnvironment.GetComponent<Environment>().type == "village")
+        {
+            villageList.Add(spawnedEnvironment.GetComponent<Village>());
+        }
         basicEnvironmentsList.Add(spawnedEnvironment.GetComponent<Environment>());
     }
 
@@ -226,9 +241,32 @@ public class GameController : MonoBehaviour {
 	}
     public void AdvanceTime()
     {
+        gameSaver.SaveGame();
+
+        if (!sunUp)
+        {
+            day++;
+            dayOfWeek++;
+            if (dayOfWeek > 7)
+            {
+
+                dayOfWeek = 1;
+                for (int i = 0; i < cityList.Count; ++i)
+                {
+                    playerCity.GetComponent<City>().CollectFromVillages();
+                    cityList[i].CollectFromVillages();
+                }
+                for (int i = 0; i < villageList.Count; ++i)
+                {
+                    villageList[i].UpdatePopulation();
+                }
+            }
+        }
+
         //player city takes turn
         playerCity.GetComponent<City>().TakeTurn();
-		//other cities take turns
+
+        //other cities take turns
         for (int i = 0; i < cityList.Count; ++i)
         {
             cityList[i].TakeTurn();
@@ -241,19 +279,12 @@ public class GameController : MonoBehaviour {
 
         uiBank.selectedTile.SimulateMouseClick();
 		//Time Stuff
-		if (!sunUp) {
-			day++;
-			dayOfWeek++;
-			if (dayOfWeek > 7) {
-				dayOfWeek = 1;
-				for (int i = 0; i < cityList.Count; ++i) {
-					cityList [i].CollectFromVillages ();
-				}
-			}
-		}
+
 		uiBank.weekText.text = dayOfWeek.ToString() + "/7";
 		uiBank.dayText.text = "DAY " + day.ToString();
 		sunUp = !sunUp;
-		gameSaver.SaveGame();
+        uiBank.munText.text = playerCity.GetComponent<City>().muns.ToString();
+        uiBank.foodText.text = playerCity.GetComponent<City>().food.ToString();
+        uiBank.selectedTile.SelectTile(); //MUST HAPPEN LAST
     }
 }

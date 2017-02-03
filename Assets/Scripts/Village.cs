@@ -23,6 +23,11 @@ public class Village : Environment {
 	void Update () {
 	
 	}
+    public void UpdatePopulation()
+    {
+        population += (int)(population * 0.015f);
+    }
+
 	public int ProduceFood(){
 		return (population*(3+prosperity));
 	}

@@ -120,8 +120,8 @@ public class Army : MonoBehaviour {
     //army proceeds towards objective
     public void TakeAction()
     {
-        Debug.Log("My Position: " + position.x + ", " + position.y);
-        Debug.Log("Objective position " + primaryObjectiveLoc.x + "," + primaryObjectiveLoc.y);
+        //Debug.Log("My Position: " + position.x + ", " + position.y);
+        //Debug.Log("Objective position " + primaryObjectiveLoc.x + "," + primaryObjectiveLoc.y);
         if(primaryObjective == Objective.none)
         {
             primaryObjective = secondaryObjective;

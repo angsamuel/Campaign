@@ -68,7 +68,6 @@ public class Tile : MonoBehaviour {
 		MoveCursorToMe ();
 	
 		if (environment != null) {
-			Debug.Log (environment.name);
 			uiBank.selectionNameText.text = environment.GetComponent<Environment> ().name;
 			uiBank.selectionTypeText.text = environment.GetComponent<Environment> ().type;
 			uiBank.targetLocationText.text = environment.GetComponent<Environment>().name;
@@ -100,9 +99,6 @@ public class Tile : MonoBehaviour {
 			uiBank.selctionTerritoriesText.text = "N/A";
 		}
 	}
-
-
-
 
     public void SimulateMouseClick()
     {

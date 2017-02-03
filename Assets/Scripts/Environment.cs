@@ -30,8 +30,6 @@ public class Environment : MonoBehaviour {
 		
 	}
 
-
-	
 	// Update is called once per frame
 	void Update () {
 	

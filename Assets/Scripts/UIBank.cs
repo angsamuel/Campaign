@@ -17,7 +17,9 @@ public class UIBank : MonoBehaviour {
 
     public GameObject gameController;
 
-
+    //Resources--------------------
+    public Text foodText;
+    public Text munText;
 
     public GameObject cursor;
 	public GameObject mainPanel;

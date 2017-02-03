@@ -47,6 +47,8 @@ public class City : Environment {
         name = nameWizard.GenerateCityName();
         leader = new Character();
         population = Random.Range(10000, 15000);
+        muns = population / 3;
+        food = population + (population / 3);
     }
     
     void Start () {
@@ -129,8 +131,15 @@ public class City : Environment {
         {
             armies[i].GetComponent<Army>().TakeAction();
         }
-        population += (int)(population * 0.015f);
+
+        
+        if (gameController.dayOfWeek == 7)
+        {
+            population += (int)(population * 0.015f);
+        }
+
     }
+
 	public void CollectFromVillages(){
 		for (int i = 0; i < lands.Count; ++i) {
 			food += lands [i].GetComponent<Village> ().ProduceFood();
